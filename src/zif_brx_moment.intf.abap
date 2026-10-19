@@ -64,4 +64,33 @@ INTERFACE zif_brx_moment
       !iv_timezone     TYPE timezone DEFAULT sy-zonlo
     RETURNING
       VALUE(ro_moment) TYPE REF TO zif_brx_moment .
+
+  "! <p class="shorttext synchronized" lang="en">Adds a given amount of time to the moment</p>
+  "!
+  "! @parameter iv_value | <p class="shorttext synchronized" lang="en">Amount of time to add (used with iv_unit)</p>
+  "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time to add (used with iv_value)</p>
+  "! @parameter iv_seconds | <p class="shorttext synchronized" lang="en">Seconds to add</p>
+  "! @parameter iv_minutes | <p class="shorttext synchronized" lang="en">Minutes to add</p>
+  "! @parameter iv_hours | <p class="shorttext synchronized" lang="en">Hours to add</p>
+  "! @parameter iv_days | <p class="shorttext synchronized" lang="en">Days to add</p>
+  "! @parameter iv_months | <p class="shorttext synchronized" lang="en">Months to add</p>
+  "! @parameter iv_years | <p class="shorttext synchronized" lang="en">Years to add</p>
+  "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
+  "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the result of the addition</p>
+  "! @raising zcx_brx_error | <p class="shorttext synchronized" lang="en">Exception raised if the addition fails</p>
+  METHODS add
+    IMPORTING
+      !iv_value        TYPE numeric OPTIONAL
+      !iv_unit         TYPE msehi OPTIONAL
+      !iv_seconds      TYPE numeric OPTIONAL
+      !iv_minutes      TYPE numeric OPTIONAL
+      !iv_hours        TYPE numeric OPTIONAL
+      !iv_days         TYPE numeric OPTIONAL
+      !iv_months       TYPE numeric OPTIONAL
+      !iv_years        TYPE numeric OPTIONAL
+      !iv_timezone     TYPE timezone DEFAULT sy-zonlo
+    RETURNING
+      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+    RAISING
+      zcx_brx_error.
 ENDINTERFACE.

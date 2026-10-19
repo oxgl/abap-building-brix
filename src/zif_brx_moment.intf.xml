@@ -12,6 +12,11 @@
    </VSEOINTERF>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Adds a given amount of time to the moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>AS_DATE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns the date part of the moment</DESCRIPT>
@@ -48,6 +53,72 @@
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_DAYS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Days to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_HOURS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Hours to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_MINUTES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Minutes to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_MONTHS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Months to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_SECONDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Seconds to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_UNIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Unit of time to add (used with iv_value)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Amount of time to add (used with iv_unit)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IV_YEARS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Years to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment representing the result of the addition</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised if the addition fails</DESCRIPT>
+    </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>AS_DATE</CMPNAME>
      <SCONAME>IV_TIMEZONE</SCONAME>
