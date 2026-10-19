@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_BRX_MOMENT</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Moment implementation</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CLASS_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Class constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GC_DATE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Date constants</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GC_TIME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time constants</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GC_TIMESTAMP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Timestamp constants</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GO_INFINITY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Reference to singleton instance of infinite moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GO_INITIAL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Reference to singleton instance of zero moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GV_TIMESTAMP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Timestamp of current moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>INFINITY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns a reference to infinite moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>INITIAL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns a reference to zero moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>NOW</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns a reference to current moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TS_DATE_PARTS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Date parts structure</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TS_TIME_PARTS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time parts structure</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_TIMESTAMP</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Timestamp of moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>INFINITY</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Reference to moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>INITIAL</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Reference to moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>NOW</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Reference to moment</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

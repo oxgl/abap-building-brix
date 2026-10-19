@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_BRX_MOMENT</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Moment</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>AS_DATE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the date part of the moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AS_TIME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the time part of the moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AS_TIMESTAMP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the timestamp of the moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AS_TIMESTAMPL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the timestamp of the moment in local time</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>AS_WEEKDAY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the weekday of the moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>END_OF_CURRENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the end of given unit of time</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>START_OF_CURRENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the start of given unit of time</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_DATE</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_DATE</CMPNAME>
+     <SCONAME>RV_DATE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Date part of the moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_TIME</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_TIME</CMPNAME>
+     <SCONAME>RV_TIME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time part of the moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_TIMESTAMP</CMPNAME>
+     <SCONAME>RV_TIMESTAMP</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Timestamp of the moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_TIMESTAMPL</CMPNAME>
+     <SCONAME>RV_TIMESTAMPL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Timestamp of the moment in local time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_WEEKDAY</CMPNAME>
+     <SCONAME>RV_WEEKDAY</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Weekday of the moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>END_OF_CURRENT</CMPNAME>
+     <SCONAME>IV_UNIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>END_OF_CURRENT</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment representing the end of given unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF_CURRENT</CMPNAME>
+     <SCONAME>IV_UNIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF_CURRENT</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment representing the start of given unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>
