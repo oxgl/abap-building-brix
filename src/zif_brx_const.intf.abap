@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">ABAP Building Components: Constants</p>
+"! <p class="shorttext synchronized" lang="en">ABAP Building Brix: Constants</p>
 INTERFACE zif_brx_const
   PUBLIC .
 

@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">ABAP Building Components: Moment</p>
+"! <p class="shorttext synchronized" lang="en">ABAP Building Brix: Moment</p>
 INTERFACE zif_brx_moment
   PUBLIC .
 

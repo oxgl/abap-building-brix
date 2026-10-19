@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="en">ABAP Building Components: Moment implementation</p>
+"! <p class="shorttext synchronized" lang="en">ABAP Building Brix: Moment implementation</p>
 CLASS zcl_brx_moment DEFINITION
   PUBLIC
   FINAL
@@ -6,7 +6,7 @@ CLASS zcl_brx_moment DEFINITION
 
   PUBLIC SECTION.
 
-    INTERFACES zif_abc_moment .
+    INTERFACES zif_brx_moment .
 
     "! <p class="shorttext synchronized" lang="en">Class constructor</p>
     CLASS-METHODS class_constructor .
@@ -15,19 +15,19 @@ CLASS zcl_brx_moment DEFINITION
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
     CLASS-METHODS now
       RETURNING
-        VALUE(ro_moment) TYPE REF TO zif_abc_moment .
+        VALUE(ro_moment) TYPE REF TO zif_brx_moment .
     "! <p class="shorttext synchronized" lang="en">Returns a reference to infinite moment</p>
     "!
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>  	
     CLASS-METHODS infinity
       RETURNING
-        VALUE(ro_moment) TYPE REF TO zif_abc_moment .
+        VALUE(ro_moment) TYPE REF TO zif_brx_moment .
     "! <p class="shorttext synchronized" lang="en">Returns a reference to zero moment</p>
     "!
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
     CLASS-METHODS initial
       RETURNING
-        VALUE(ro_moment) TYPE REF TO zif_abc_moment .
+        VALUE(ro_moment) TYPE REF TO zif_brx_moment .
   PROTECTED SECTION.
 
 
@@ -76,11 +76,11 @@ CLASS zcl_brx_moment DEFINITION
 
     CLASS-DATA:
       "! <p class="shorttext synchronized" lang="en">Reference to singleton instance of infinite moment</p>
-      go_infinity TYPE REF TO zif_abc_moment.
+      go_infinity TYPE REF TO zif_brx_moment.
 
     CLASS-DATA:
       "! <p class="shorttext synchronized" lang="en">Reference to singleton instance of zero moment</p>
-      go_initial     TYPE REF TO zif_abc_moment.
+      go_initial     TYPE REF TO zif_brx_moment.
 
 
     METHODS:
@@ -134,7 +134,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD zif_abc_moment~as_date.
+  METHOD zif_brx_moment~as_date.
     CASE me.
       WHEN infinity( ).
         rv_date = gc_date-infinity.
@@ -147,7 +147,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD zif_abc_moment~as_time.
+  METHOD zif_brx_moment~as_time.
     CASE me.
       WHEN infinity( ).
         rv_time = gc_time-maximum.
@@ -160,29 +160,29 @@ CLASS zcl_brx_moment IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD zif_abc_moment~as_timestamp.
+  METHOD zif_brx_moment~as_timestamp.
     rv_timestamp = floor( gv_timestamp ).
   ENDMETHOD.
 
 
-  METHOD zif_abc_moment~as_timestampl.
+  METHOD zif_brx_moment~as_timestampl.
     rv_timestampl = gv_timestamp.
   ENDMETHOD.
 
 
-  METHOD zif_abc_moment~as_weekday.
+  METHOD zif_brx_moment~as_weekday.
     CASE me.
       WHEN infinity( ).
         rv_weekday = 7.
       WHEN initial( ).
         rv_weekday = 0.
       WHEN OTHERS.
-        rv_weekday = ( zif_abc_moment~as_date( ) + 5 ) MOD 7.
+        rv_weekday = ( zif_brx_moment~as_date( ) + 5 ) MOD 7.
     ENDCASE.
   ENDMETHOD.
 
 
-  METHOD zif_abc_moment~end_of_current.
+  METHOD zif_brx_moment~end_of_current.
     " Whith these two cases we can avoid the conversion of
     " timestamp to date and time zone, which is expensive
     IF me EQ infinity( ) OR me EQ initial( ).
@@ -194,26 +194,26 @@ CLASS zcl_brx_moment IMPLEMENTATION.
        INTO DATE DATA(lv_date) TIME DATA(lv_time).
 
     CASE iv_unit.
-      WHEN zif_abc_const=>gc_unit-second.
+      WHEN zif_brx_const=>gc_unit-second.
         ro_moment = NEW zcl_brx_moment( floor( gv_timestamp ) + gc_timestamp-end_of_second ).
         RETURN.
 
-      WHEN zif_abc_const=>gc_unit-minute.
+      WHEN zif_brx_const=>gc_unit-minute.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(4) }59| )
            INTO TIME STAMP DATA(lv_timestamp) TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
-      WHEN zif_abc_const=>gc_unit-hour.
+      WHEN zif_brx_const=>gc_unit-hour.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(2) }5959| )
            INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
-      WHEN zif_abc_const=>gc_unit-day.
+      WHEN zif_brx_const=>gc_unit-day.
         CONVERT DATE lv_date TIME gc_time-maximum
            INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
-      WHEN zif_abc_const=>gc_unit-month.
+      WHEN zif_brx_const=>gc_unit-month.
         " Convert date to parts, increment month, and handle year overflow
         DATA(ls_date) = CONV ts_date_parts( lv_date ).
         " Increment month and handle year overflow
@@ -232,7 +232,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
            INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
-      WHEN zif_abc_const=>gc_unit-year.
+      WHEN zif_brx_const=>gc_unit-year.
         CONVERT DATE CONV d( |{ lv_date(4) }1231| ) TIME gc_time-maximum
            INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
@@ -243,7 +243,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD zif_abc_moment~start_of_current.
+  METHOD zif_brx_moment~start_of_current.
     IF me EQ infinity( ) OR me EQ initial( ).
       ro_moment = me.
       RETURN.
@@ -253,31 +253,31 @@ CLASS zcl_brx_moment IMPLEMENTATION.
        INTO DATE DATA(lv_date) TIME DATA(lv_time).
 
     CASE iv_unit.
-      WHEN zif_abc_const=>gc_unit-second.
+      WHEN zif_brx_const=>gc_unit-second.
         ro_moment = NEW zcl_brx_moment( floor( gv_timestamp ) ).
         RETURN.
 
-      WHEN zif_abc_const=>gc_unit-minute.
+      WHEN zif_brx_const=>gc_unit-minute.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(4) }00| )
            INTO TIME STAMP DATA(lv_timestamp) TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
-      WHEN zif_abc_const=>gc_unit-hour.
+      WHEN zif_brx_const=>gc_unit-hour.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(2) }0000| )
            INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
-      WHEN zif_abc_const=>gc_unit-day.
+      WHEN zif_brx_const=>gc_unit-day.
         CONVERT DATE lv_date TIME gc_time-initial
            INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
-      WHEN zif_abc_const=>gc_unit-month.
+      WHEN zif_brx_const=>gc_unit-month.
         CONVERT DATE CONV d( |{ lv_date(6) }01| ) TIME gc_time-initial
            INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
-      WHEN zif_abc_const=>gc_unit-year.
+      WHEN zif_brx_const=>gc_unit-year.
         CONVERT DATE CONV d( |{ lv_date(4) }0101| ) TIME gc_time-initial
              INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
