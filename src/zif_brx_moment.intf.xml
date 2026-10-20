@@ -22,6 +22,11 @@
      <DESCRIPT>Returns the date part of the moment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>AS_STRING</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the ISO 8601 representation of the moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>AS_TIME</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns the time part of the moment</DESCRIPT>
@@ -42,14 +47,24 @@
      <DESCRIPT>Returns the weekday of the moment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>END_OF_CURRENT</CMPNAME>
+     <CMPNAME>END_OF</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns the end of given unit of time</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>START_OF_CURRENT</CMPNAME>
+     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the end of previous unit of time</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>START_OF</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns the start of given unit of time</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the start of next unit of time</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
@@ -132,6 +147,12 @@
      <DESCRIPT>Date part of the moment</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
+     <CMPNAME>AS_STRING</CMPNAME>
+     <SCONAME>RV_STRING</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>ISO 8601 representation of the moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
      <CMPNAME>AS_TIME</CMPNAME>
      <SCONAME>IV_TIMEZONE</SCONAME>
      <LANGU>E</LANGU>
@@ -157,33 +178,111 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>AS_WEEKDAY</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>AS_WEEKDAY</CMPNAME>
      <SCONAME>RV_WEEKDAY</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Weekday of the moment</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF_CURRENT</CMPNAME>
+     <CMPNAME>END_OF</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>END_OF</CMPNAME>
      <SCONAME>IV_UNIT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Unit of time</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF_CURRENT</CMPNAME>
+     <CMPNAME>END_OF</CMPNAME>
      <SCONAME>RO_MOMENT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Moment representing the end of given unit of time</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF_CURRENT</CMPNAME>
+     <CMPNAME>END_OF</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
      <SCONAME>IV_UNIT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Unit of time</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF_CURRENT</CMPNAME>
+     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment representing the end of previous unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF</CMPNAME>
+     <SCONAME>IV_UNIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF</CMPNAME>
      <SCONAME>RO_MOMENT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Moment representing the start of given unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <SCONAME>IV_UNIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment representing the start of next unit of time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

@@ -38,32 +38,82 @@ INTERFACE zif_brx_moment
 
   "! <p class="shorttext synchronized" lang="en">Returns the weekday of the moment</p>
   "!
+  "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
   "! @parameter rv_weekday | <p class="shorttext synchronized" lang="en">Weekday of the moment</p>
   METHODS as_weekday
+    IMPORTING
+      !iv_timezone      TYPE timezone DEFAULT sy-zonlo
     RETURNING
       VALUE(rv_weekday) TYPE i.
+
+  "! <p class="shorttext synchronized" lang="en">Returns the ISO 8601 representation of the moment</p>
+  "!
+  "! @parameter rv_string | <p class="shorttext synchronized" lang="en">ISO 8601 representation of the moment</p>
+  METHODS as_string
+    RETURNING
+      VALUE(rv_string) TYPE string.
 
   "! <p class="shorttext synchronized" lang="en">Returns the end of given unit of time</p>
   "!
   "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
+  "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
   "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the end of given unit of time</p>
-  METHODS end_of_current
+  "! @raising zcx_brx_error | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>
+  METHODS end_of
     IMPORTING
       !iv_unit         TYPE msehi
       !iv_timezone     TYPE timezone DEFAULT sy-zonlo
     RETURNING
-      VALUE(ro_moment) TYPE REF TO zif_brx_moment .
+      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+    RAISING
+      zcx_brx_error .
 
   "! <p class="shorttext synchronized" lang="en">Returns the start of given unit of time</p>
   "!
   "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
+  "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
   "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the start of given unit of time</p>
-  METHODS start_of_current
+  "! @raising zcx_brx_error | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>
+  METHODS start_of
     IMPORTING
       !iv_unit         TYPE msehi
       !iv_timezone     TYPE timezone DEFAULT sy-zonlo
     RETURNING
-      VALUE(ro_moment) TYPE REF TO zif_brx_moment .
+      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+    RAISING
+      zcx_brx_error .
+
+  "! <p class="shorttext synchronized" lang="en">Returns the end of previous unit of time</p>
+  "!
+  "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
+  "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
+  "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the end of previous unit of time</p>
+  "! @raising zcx_brx_error | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>"!
+  METHODS end_of_previous
+    IMPORTING
+      !iv_unit         TYPE msehi
+      !iv_timezone     TYPE timezone DEFAULT sy-zonlo
+    RETURNING
+      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+    RAISING
+      zcx_brx_error .
+
+
+  "! <p class="shorttext synchronized" lang="en">Returns the start of next unit of time</p>
+  "!
+  "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
+  "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
+  "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the start of next unit of time</p>
+  "! @raising zcx_brx_error | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>"!"!
+  METHODS start_of_next
+    IMPORTING
+      !iv_unit         TYPE msehi
+      !iv_timezone     TYPE timezone DEFAULT sy-zonlo
+    RETURNING
+      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+    RAISING
+      zcx_brx_error .
+
 
   "! <p class="shorttext synchronized" lang="en">Adds a given amount of time to the moment</p>
   "!

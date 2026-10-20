@@ -26,4 +26,5 @@ INTERFACE zif_brx_const
       saturday  TYPE i VALUE 5,
       sunday    TYPE i VALUE 6,
     END OF gc_weekday .
+
 ENDINTERFACE.

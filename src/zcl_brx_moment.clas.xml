@@ -68,6 +68,16 @@
      <DESCRIPT>Returns a reference to current moment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>TO_VALID_DATE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validates a date value and returns it as a date type</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TSTMP_ADD</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Adds a value to a timestamp</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>TS_DATE_PARTS</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Date parts structure</DESCRIPT>
@@ -102,6 +112,54 @@
      <SCONAME>RO_MOMENT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Reference to moment</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TO_VALID_DATE</CMPNAME>
+     <SCONAME>IV_DATE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Date string to be validated</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TO_VALID_DATE</CMPNAME>
+     <SCONAME>RV_DATE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Validated date as type d</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TO_VALID_DATE</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised in case of invalid date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TSTMP_ADD</CMPNAME>
+     <SCONAME>IV_TIMESTAMP</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Timestamp to which the value will be added</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TSTMP_ADD</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone for the operation</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TSTMP_ADD</CMPNAME>
+     <SCONAME>IV_UNIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Unit of the value to be added</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TSTMP_ADD</CMPNAME>
+     <SCONAME>IV_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Value to be added</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TSTMP_ADD</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised in case of error</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>
