@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_BRX_DURATION</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Duration implementation</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Constructor</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create a new instance of the duration</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GV_SECONDS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration in seconds</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_SECONDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration in seconds</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE</CMPNAME>
+     <SCONAME>IV_UNIT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration unit</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE</CMPNAME>
+     <SCONAME>IV_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration value</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE</CMPNAME>
+     <SCONAME>RO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of the duration</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE</CMPNAME>
+     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Error creating duration</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

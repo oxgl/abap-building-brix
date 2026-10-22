@@ -70,6 +70,12 @@
    <DESCRIPTIONS_SUB>
     <SEOSUBCOTX>
      <CMPNAME>ADD</CMPNAME>
+     <SCONAME>IO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
      <SCONAME>IV_DAYS</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Days to add</DESCRIPT>
@@ -103,18 +109,6 @@
      <SCONAME>IV_TIMEZONE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Time zone</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>ADD</CMPNAME>
-     <SCONAME>IV_UNIT</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Unit of time to add (used with iv_value)</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>ADD</CMPNAME>
-     <SCONAME>IV_VALUE</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Amount of time to add (used with iv_unit)</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>ADD</CMPNAME>

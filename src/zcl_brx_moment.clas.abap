@@ -1,8 +1,7 @@
 "! <p class="shorttext synchronized" lang="en">ABAP Building Brix: Moment implementation</p>
 CLASS zcl_brx_moment DEFINITION
   PUBLIC
-  FINAL
-  CREATE PRIVATE .
+  CREATE PROTECTED .
 
   PUBLIC SECTION.
 
@@ -29,9 +28,6 @@ CLASS zcl_brx_moment DEFINITION
       RETURNING
         VALUE(ro_moment) TYPE REF TO zif_brx_moment .
   PROTECTED SECTION.
-
-
-  PRIVATE SECTION.
     TYPES:
       "! <p class="shorttext synchronized" lang="en">Date parts structure</p>
       BEGIN OF ts_date_parts,
@@ -122,6 +118,14 @@ CLASS zcl_brx_moment DEFINITION
       RAISING
         zcx_brx_error.
 
+    METHODS determine_timezone
+      IMPORTING
+        !iv_timezone       TYPE timezone
+      RETURNING
+        VALUE(rv_timezone) TYPE timezone.
+
+
+  PRIVATE SECTION.
 
 ENDCLASS.
 
@@ -172,7 +176,8 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       WHEN initial( ).
         RETURN gc_date-initial.
       WHEN OTHERS.
-        CONVERT TIME STAMP gv_timestamp TIME ZONE iv_timezone
+        DATA(lv_timezone) = determine_timezone( iv_timezone ).
+        CONVERT TIME STAMP gv_timestamp TIME ZONE lv_timezone
            INTO DATE rv_date.
         RETURN rv_date.
     ENDCASE.
@@ -186,7 +191,8 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       WHEN initial( ).
         RETURN gc_time-initial.
       WHEN OTHERS.
-        CONVERT TIME STAMP gv_timestamp TIME ZONE iv_timezone
+        DATA(lv_timezone) = determine_timezone( iv_timezone ).
+        CONVERT TIME STAMP gv_timestamp TIME ZONE lv_timezone
            INTO TIME rv_time.
         RETURN rv_time.
     ENDCASE.
@@ -209,7 +215,10 @@ CLASS zcl_brx_moment IMPLEMENTATION.
     " since 0001-01-01. Each day of the week corresponds to a specific remainder when divided by 7.
     " Thus, we can use the formula (date + 5) MOD 7 to get the weekday, where 0 is Monday and 6 is Sunday.
     " Same calculation is used by standard code, like CL_SCAL_UTILS...
-    rv_weekday = ( zif_brx_moment~as_date( iv_timezone ) + 5 ) MOD 7.
+
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
+    rv_weekday = ( zif_brx_moment~as_date( lv_timezone ) + 5 ) MOD 7.
   ENDMETHOD.
 
 
@@ -225,7 +234,9 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       RETURN me.
     ENDIF.
 
-    CONVERT TIME STAMP gv_timestamp TIME ZONE iv_timezone
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
+    CONVERT TIME STAMP gv_timestamp TIME ZONE lv_timezone
        INTO DATE DATA(lv_date) TIME DATA(lv_time).
 
     CASE iv_unit.
@@ -234,24 +245,24 @@ CLASS zcl_brx_moment IMPLEMENTATION.
 
       WHEN zif_brx_const=>gc_unit-minute.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(4) }59| )
-           INTO TIME STAMP DATA(lv_timestamp) TIME ZONE iv_timezone.
+           INTO TIME STAMP DATA(lv_timestamp) TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN zif_brx_const=>gc_unit-hour.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(2) }5959| )
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN zif_brx_const=>gc_unit-day.
         CONVERT DATE lv_date TIME gc_time-maximum
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN zif_brx_const=>gc_unit-week.
         " Calculate the last day of the current week (Sunday)
-        lv_date = zif_brx_moment~as_date( iv_timezone ) + ( zif_brx_const=>gc_weekday-sunday - zif_brx_moment~as_weekday( iv_timezone ) ).
+        lv_date = zif_brx_moment~as_date( lv_timezone ) + ( zif_brx_const=>gc_weekday-sunday - zif_brx_moment~as_weekday( lv_timezone ) ).
         CONVERT DATE lv_date TIME gc_time-maximum
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN zif_brx_const=>gc_unit-month.
@@ -270,12 +281,12 @@ CLASS zcl_brx_moment IMPLEMENTATION.
         lv_date -= 1. " Go to the last day of the current month
 
         CONVERT DATE lv_date TIME gc_time-maximum
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN zif_brx_const=>gc_unit-year.
         CONVERT DATE CONV d( |{ lv_date(4) }1231| ) TIME gc_time-maximum
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN OTHERS.
@@ -290,7 +301,9 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       RETURN me.
     ENDIF.
 
-    CONVERT TIME STAMP gv_timestamp TIME ZONE iv_timezone
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
+    CONVERT TIME STAMP gv_timestamp TIME ZONE lv_timezone
        INTO DATE DATA(lv_date) TIME DATA(lv_time).
 
     CASE iv_unit.
@@ -300,33 +313,33 @@ CLASS zcl_brx_moment IMPLEMENTATION.
 
       WHEN zif_brx_const=>gc_unit-minute.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(4) }00| )
-           INTO TIME STAMP DATA(lv_timestamp) TIME ZONE iv_timezone.
+           INTO TIME STAMP DATA(lv_timestamp) TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN zif_brx_const=>gc_unit-hour.
         CONVERT DATE lv_date TIME CONV t( |{ lv_time(2) }0000| )
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN zif_brx_const=>gc_unit-day.
         CONVERT DATE lv_date TIME gc_time-initial
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN zif_brx_const=>gc_unit-week.
-        lv_date = zif_brx_moment~as_date( iv_timezone ) - zif_brx_moment~as_weekday( iv_timezone ).
+        lv_date = zif_brx_moment~as_date( lv_timezone ) - zif_brx_moment~as_weekday( lv_timezone ).
         CONVERT DATE lv_date TIME gc_time-initial
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN zif_brx_const=>gc_unit-month.
         CONVERT DATE CONV d( |{ lv_date(6) }01| ) TIME gc_time-initial
-           INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+           INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN zif_brx_const=>gc_unit-year.
         CONVERT DATE CONV d( |{ lv_date(4) }0101| ) TIME gc_time-initial
-             INTO TIME STAMP lv_timestamp TIME ZONE iv_timezone.
+             INTO TIME STAMP lv_timestamp TIME ZONE lv_timezone.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN OTHERS.
@@ -341,13 +354,15 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       RETURN me.
     ENDIF.
 
-    DATA(lo_start_of_current) = zif_brx_moment~start_of( iv_unit = iv_unit iv_timezone = iv_timezone ).
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
+    DATA(lo_start_of_current) = zif_brx_moment~start_of( iv_unit = iv_unit iv_timezone = lv_timezone ).
 
     DATA(lv_timestamp) = tstmp_add(
       iv_timestamp = lo_start_of_current->as_timestamp( )
       iv_value     = -1
       iv_unit      = zif_brx_const=>gc_unit-second
-      iv_timezone  = iv_timezone
+      iv_timezone  = lv_timezone
     ).
 
     RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
@@ -360,13 +375,15 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       RETURN me.
     ENDIF.
 
-    DATA(lo_end_of_current) = zif_brx_moment~end_of( iv_unit = iv_unit iv_timezone = iv_timezone ).
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
+    DATA(lo_end_of_current) = zif_brx_moment~end_of( iv_unit = iv_unit iv_timezone = lv_timezone ).
 
     DATA(lv_timestamp) = tstmp_add(
       iv_timestamp = lo_end_of_current->as_timestamp( )
       iv_value     = 1
       iv_unit      = zif_brx_const=>gc_unit-second
-      iv_timezone  = iv_timezone
+      iv_timezone  = lv_timezone
     ).
 
     RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
@@ -374,6 +391,44 @@ CLASS zcl_brx_moment IMPLEMENTATION.
   ENDMETHOD.
 
 
+  METHOD zif_brx_moment~add.
+    IF me EQ infinity( ) OR me EQ initial( ).
+      ro_moment = me.
+      RETURN.
+    ENDIF.
+
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
+    " Calculate the new timestamp by adding components to the current timestamp
+    " Start from the largest unit to the smallest unit to avoid overflow issues
+
+    DATA(lv_timestamp) = gv_timestamp.
+
+    " Add the specified number of years to the current timestamp
+    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_years iv_unit = zif_brx_const=>gc_unit-year iv_timezone = lv_timezone ).
+
+    " Add the specified number of months to the current timestamp
+    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_months iv_unit = zif_brx_const=>gc_unit-month iv_timezone = lv_timezone ).
+
+    " Add the specified number of days to the current timestamp
+    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_days iv_unit = zif_brx_const=>gc_unit-day iv_timezone = lv_timezone ).
+
+    " Add the specified number of hours to the current timestamp
+    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_hours iv_unit = zif_brx_const=>gc_unit-hour iv_timezone = lv_timezone ).
+
+    " Add the specified number of minutes to the current timestamp
+    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_minutes iv_unit = zif_brx_const=>gc_unit-minute iv_timezone = lv_timezone ).
+
+    " Add the specified number of seconds to the current timestamp
+    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_seconds iv_unit = zif_brx_const=>gc_unit-second iv_timezone = lv_timezone ).
+
+    " Add the specified value and unit to the current timestamp
+    IF io_duration IS BOUND.
+      lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = io_duration->as_seconds( ) iv_unit = zif_brx_const=>gc_unit-second iv_timezone = lv_timezone ).
+    ENDIF.
+
+    RETURN NEW zcl_brx_moment( lv_timestamp ).
+  ENDMETHOD.
 
   METHOD to_valid_date.
 
@@ -413,6 +468,8 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       RETURN.
     ENDIF.
 
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
     TRY.
         CASE iv_unit.
           WHEN zif_brx_const=>gc_unit-second.
@@ -436,7 +493,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
           WHEN zif_brx_const=>gc_unit-day.
 
             " Convert timestamp to date and time zone
-            CONVERT TIME STAMP iv_timestamp TIME ZONE iv_timezone
+            CONVERT TIME STAMP iv_timestamp TIME ZONE lv_timezone
                INTO DATE DATA(lv_date) TIME DATA(lv_time).
 
             " Add days...
@@ -444,7 +501,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
 
             " Convert date and original time back to timestamp
             CONVERT DATE lv_date TIME lv_time
-               INTO TIME STAMP rv_timestamp TIME ZONE iv_timezone.
+               INTO TIME STAMP rv_timestamp TIME ZONE lv_timezone.
 
             " Add the fractional part of the original timestamp to the new timestamp
             RETURN floor( rv_timestamp ) + frac( iv_timestamp ).
@@ -452,7 +509,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
           WHEN zif_brx_const=>gc_unit-month
             OR zif_brx_const=>gc_unit-year.
             " Convert timestamp to date and time zone
-            CONVERT TIME STAMP iv_timestamp TIME ZONE iv_timezone
+            CONVERT TIME STAMP iv_timestamp TIME ZONE lv_timezone
                INTO DATE lv_date TIME lv_time.
 
             " Convert date to parts
@@ -478,7 +535,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
 
             " Convert date and original time back to timestamp
             CONVERT DATE lv_date TIME lv_time
-               INTO TIME STAMP rv_timestamp TIME ZONE iv_timezone.
+               INTO TIME STAMP rv_timestamp TIME ZONE lv_timezone.
 
             " Add the fractional part of the original timestamp to the new timestamp
             RETURN floor( rv_timestamp ) + frac( iv_timestamp ).
@@ -497,44 +554,12 @@ CLASS zcl_brx_moment IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD zif_brx_moment~add.
-    IF me EQ infinity( ) OR me EQ initial( ).
-      ro_moment = me.
-      RETURN.
+  METHOD determine_timezone.
+    IF iv_timezone IS INITIAL.
+      rv_timezone = sy-zonlo.
+    ELSE.
+      rv_timezone = iv_timezone.
     ENDIF.
-
-    " Calculate the new timestamp by adding components to the current timestamp
-    " Start from the largest unit to the smallest unit to avoid overflow issues
-
-    DATA(lv_timestamp) = gv_timestamp.
-
-    " Add the specified number of years to the current timestamp
-    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_years iv_unit = zif_brx_const=>gc_unit-year iv_timezone = iv_timezone ).
-
-    " Add the specified number of months to the current timestamp
-    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_months iv_unit = zif_brx_const=>gc_unit-month iv_timezone = iv_timezone ).
-
-    " Add the specified number of days to the current timestamp
-    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_days iv_unit = zif_brx_const=>gc_unit-day iv_timezone = iv_timezone ).
-
-    " Add the specified number of hours to the current timestamp
-    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_hours iv_unit = zif_brx_const=>gc_unit-hour iv_timezone = iv_timezone ).
-
-    " Add the specified number of minutes to the current timestamp
-    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_minutes iv_unit = zif_brx_const=>gc_unit-minute iv_timezone = iv_timezone ).
-
-    " Add the specified number of seconds to the current timestamp
-    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_seconds iv_unit = zif_brx_const=>gc_unit-second iv_timezone = iv_timezone ).
-
-    " Add the specified value and unit to the current timestamp
-    lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = iv_value iv_unit = iv_unit iv_timezone = iv_timezone ).
-
-    RETURN NEW zcl_brx_moment( lv_timestamp ).
   ENDMETHOD.
-
-
-
-
-
 
 ENDCLASS.
