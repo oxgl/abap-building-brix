@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_BRX_TYPE</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Type definitions</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_DATE_FORMAT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for date format</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_TIMESTAMP_FORMAT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for timestamp format</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_TIMESTAMP_LONG</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for the long timestamp</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_TIMESTAMP_SHORT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for the short timestamp</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_TIME_FORMAT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for time format</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_TIME_UNIT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for the time unit</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_TIME_ZONE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for the time zone</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TV_WEEKDAY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for the weekday</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

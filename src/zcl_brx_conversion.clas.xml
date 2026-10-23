@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_BRX_CONVERSION</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Conversion methods</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CREATE_MATCHER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creates a matcher object for the given pattern and text</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Converts a date string to an internal date representation</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Converts a time string to an internal time representation</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Converts a timestamp string to an internal timestamp</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_MATCHER</CMPNAME>
+     <SCONAME>IV_IGNORE_CASE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Case sensitivity</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_MATCHER</CMPNAME>
+     <SCONAME>IV_PATTERN</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The regular expression pattern to be used for matching</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_MATCHER</CMPNAME>
+     <SCONAME>IV_TEXT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The text to be matched against the pattern</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_MATCHER</CMPNAME>
+     <SCONAME>RO_MATCHER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The matcher object</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <SCONAME>EV_FORMAT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The found format of the input date string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <SCONAME>IV_FORMAT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The expected format of the input date string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <SCONAME>IV_INPUT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The input date string to be converted</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <SCONAME>IV_PLAUSIBILITY_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Performs a plausibility check on the input date string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <SCONAME>RV_OUTPUT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The internal date representation after conversion</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <SCONAME>ZCX_BRX_CONVERSION_FAILED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised when the conversion fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <SCONAME>EV_FORMAT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The found format of the input time string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <SCONAME>IV_FORMAT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The expected format of the input time string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <SCONAME>IV_INPUT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The input time string to be converted</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <SCONAME>IV_PLAUSIBILITY_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Performs a plausibility check on the input time string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <SCONAME>RV_OUTPUT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The internal time representation after conversion</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <SCONAME>ZCX_BRX_CONVERSION_FAILED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised when the conversion fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIME</CMPNAME>
+     <SCONAME>ZCX_BRX_OUT_OF_RANGE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised when the input time is out of range</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <SCONAME>EV_FORMAT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The found format of the input timestamp string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <SCONAME>IV_FORMAT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The expected format of the input timestamp string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <SCONAME>IV_INPUT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The input timestamp string to be converted</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <SCONAME>IV_PLAUSIBILITY_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Performs a plausibility check on the input timestamp string</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <SCONAME>RV_OUTPUT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The internal timestamp representation after conversion</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <SCONAME>ZCX_BRX_CONVERSION_FAILED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised when the conversion fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
+     <SCONAME>ZCX_BRX_OUT_OF_RANGE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised when the input timestamp is out of range</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -23,9 +23,24 @@
      <DESCRIPT>Create a new instance of the duration</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GC_DURATION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration constants</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>GV_SECONDS</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Duration in seconds</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>INFINITY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get the duration representing infinity</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>INITIAL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get the duration representing initial</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
@@ -55,9 +70,27 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CREATE</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Error creating duration</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>INFINITY</CMPNAME>
+     <SCONAME>IV_NEGATIVE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>If true, the duration will be negative</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>INFINITY</CMPNAME>
+     <SCONAME>RO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of the duration representing infinity</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>INITIAL</CMPNAME>
+     <SCONAME>RO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of the duration representing initial</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

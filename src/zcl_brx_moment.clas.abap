@@ -9,6 +9,47 @@ CLASS zcl_brx_moment DEFINITION
 
     "! <p class="shorttext synchronized" lang="en">Class constructor</p>
     CLASS-METHODS class_constructor .
+    "! <p class="shorttext synchronized" lang="en">Creates a new moment instance</p>
+    "!
+    "! @parameter iv_timestamp | <p class="shorttext synchronized" lang="en">Timestamp of moment</p>
+    "! @parameter iv_date | <p class="shorttext synchronized" lang="en">Date of moment</p>
+    "! @parameter iv_time | <p class="shorttext synchronized" lang="en">Time of moment</p>
+    "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
+    CLASS-METHODS create
+      IMPORTING
+        iv_timestamp     TYPE numeric OPTIONAL
+        iv_date          TYPE d OPTIONAL
+        iv_time          TYPE t OPTIONAL
+        iv_timezone      TYPE zif_brx_type=>tv_time_zone DEFAULT sy-zonlo
+      RETURNING
+        VALUE(ro_moment) TYPE REF TO zif_brx_moment
+      RAISING
+        zcx_brx_static_check.
+
+
+    "! <p class="shorttext synchronized" lang="en">Parses a string representation of a moment</p>
+    "!
+    "! <p>The string representation should be in RFC 3339 format, which is a subset of ISO 8601. The expected formats are:
+    "! <ul>
+    "! <li>"YYYY-MM-DDTHH:MM:SS" (local time)</li>
+    "! <li>"YYYY-MM-DDTHH:MM:SSZ" (UTC time)</li>
+    "! <li>"YYYY-MM-DDTHH:MM:SS±HH:MM" (with time zone offset)</li>
+    "! </ul>
+    "! </p>
+    "!
+    "! @parameter iv_string | <p class="shorttext synchronized" lang="en">String representation of a moment</p>
+    "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
+    "! @raising zcx_brx_conversion_failed | <p class="shorttext synchronized" lang="en">Conversion failed due to invalid format or value</p>
+    "! @raising zcx_brx_out_of_range | <p class="shorttext synchronized" lang="en">Conversion failed due to value being out of range</p>
+    CLASS-METHODS parse
+      IMPORTING
+        iv_string        TYPE clike
+      RETURNING
+        VALUE(ro_moment) TYPE REF TO zif_brx_moment
+      RAISING
+        zcx_brx_conversion_failed
+        zcx_brx_out_of_range.
+
     "! <p class="shorttext synchronized" lang="en">Returns a reference to current moment</p>
     "!
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
@@ -82,7 +123,7 @@ CLASS zcl_brx_moment DEFINITION
     METHODS:
 	  "! <p class="shorttext synchronized" lang="en">Constructor</p>
 	  "!
-	  "! @parameter iv_timestamp | <p class="shorttext synchronized" lang="en">Timestamp of moment</p>
+    "! @parameter iv_timestamp | <p class="shorttext synchronized" lang="en">Timestamp of moment</p>
 	  constructor
 		IMPORTING
 		  iv_timestamp TYPE timestampl OPTIONAL.
@@ -91,14 +132,14 @@ CLASS zcl_brx_moment DEFINITION
     "!
     "! @parameter iv_date | <p class="shorttext synchronized" lang="en">Date string to be validated</p>
     "! @parameter rv_date | <p class="shorttext synchronized" lang="en">Validated date as type d</p>
-    "! @raising zcx_brx_error | <p class="shorttext synchronized" lang="en">Exception raised in case of invalid date</p>
+    "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised in case of invalid date</p>
     METHODS to_valid_date
       IMPORTING
         !iv_date       TYPE clike
       RETURNING
         VALUE(rv_date) TYPE d
       RAISING
-        zcx_brx_error.
+        zcx_brx_static_check.
 
     "! <p class="shorttext synchronized" lang="en">Adds a value to a timestamp</p>
     "!
@@ -106,23 +147,45 @@ CLASS zcl_brx_moment DEFINITION
     "! @parameter iv_value | <p class="shorttext synchronized" lang="en">Value to be added</p>
     "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of the value to be added</p>
     "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone for the operation</p>
-    "! @raising zcx_brx_error | <p class="shorttext synchronized" lang="en">Exception raised in case of error</p>
+    "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised in case of error</p>
     METHODS tstmp_add
       IMPORTING
         !iv_timestamp       TYPE timestampl
         !iv_value           TYPE numeric
         !iv_unit            TYPE msehi OPTIONAL
-        !iv_timezone        TYPE timezone DEFAULT sy-zonlo
+        !iv_timezone        TYPE zif_brx_type=>tv_time_zone DEFAULT sy-zonlo
       RETURNING
         VALUE(rv_timestamp) TYPE timestampl
       RAISING
-        zcx_brx_error.
+        zcx_brx_static_check.
 
+    "! <p class="shorttext synchronized" lang="en">Subtracts a value from a timestamp</p>
+    "!
+    "! @parameter iv_timestamp | <p class="shorttext synchronized" lang="en">Timestamp from which the value will be subtracted</p>
+    "! @parameter iv_value | <p class="shorttext synchronized" lang="en">Value to be subtracted</p>
+    "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of the value to be subtracted</p>
+    "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone for the operation</p>
+    "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised in case of error</p>
+    METHODS tstmp_subtract
+      IMPORTING
+        !iv_timestamp       TYPE timestampl
+        !iv_value           TYPE numeric
+        !iv_unit            TYPE msehi OPTIONAL
+        !iv_timezone        TYPE zif_brx_type=>tv_time_zone DEFAULT sy-zonlo
+      RETURNING
+        VALUE(rv_timestamp) TYPE timestampl
+      RAISING
+        zcx_brx_static_check.
+
+    "! <p class="shorttext synchronized" lang="en">Determines the time zone to be used for operations</p>
+    "!
+    "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Input time zone</p>
+    "! @parameter rv_timezone | <p class="shorttext synchronized" lang="en">Determined time zone</p>
     METHODS determine_timezone
       IMPORTING
-        !iv_timezone       TYPE timezone
+        !iv_timezone       TYPE zif_brx_type=>tv_time_zone
       RETURNING
-        VALUE(rv_timezone) TYPE timezone.
+        VALUE(rv_timezone) TYPE zif_brx_type=>tv_time_zone.
 
 
   PRIVATE SECTION.
@@ -153,6 +216,26 @@ CLASS zcl_brx_moment IMPLEMENTATION.
       go_infinity = NEW zcl_brx_moment( gc_timestamp-infinity ).
     ENDIF.
     RETURN go_infinity.
+  ENDMETHOD.
+
+
+  METHOD create.
+    IF iv_timestamp IS NOT INITIAL.
+      ro_moment = NEW zcl_brx_moment( iv_timestamp ).
+    ELSEIF iv_date IS NOT INITIAL.
+      CONVERT DATE iv_date TIME iv_time
+         INTO TIME STAMP DATA(lv_timestamp) TIME ZONE iv_timezone.
+      ro_moment = NEW zcl_brx_moment( CONV #( lv_timestamp ) ).
+    ELSE.
+      " If no parameters are supplied, return the current moment
+      ro_moment = now( ).
+    ENDIF.
+  ENDMETHOD.
+
+
+  METHOD parse.
+    DATA(lv_timestamp) = zcl_brx_conversion=>parse_timestamp( iv_string ).
+    RETURN NEW zcl_brx_moment( lv_timestamp ).
   ENDMETHOD.
 
 
@@ -290,7 +373,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN OTHERS.
-        RAISE EXCEPTION TYPE zcx_brx_error.
+        RAISE EXCEPTION TYPE zcx_brx_static_check.
 
     ENDCASE.
   ENDMETHOD.
@@ -343,7 +426,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN OTHERS.
-        RAISE EXCEPTION TYPE zcx_brx_error.
+        RAISE EXCEPTION TYPE zcx_brx_static_check.
 
     ENDCASE.
   ENDMETHOD.
@@ -424,10 +507,69 @@ CLASS zcl_brx_moment IMPLEMENTATION.
 
     " Add the specified value and unit to the current timestamp
     IF io_duration IS BOUND.
+      " Handle the case where the duration is infinite,
+      " as adding an infinite duration to a finite moment results in an infinite moment.
+      IF io_duration->is_infinite( ).
+        IF io_duration->sign( ) LT 0.
+          RETURN initial( ).
+        ELSE.
+          RETURN infinity( ).
+        ENDIF.
+      ENDIF.
       lv_timestamp = tstmp_add( iv_timestamp = lv_timestamp iv_value = io_duration->as_seconds( ) iv_unit = zif_brx_const=>gc_unit-second iv_timezone = lv_timezone ).
     ENDIF.
 
     RETURN NEW zcl_brx_moment( lv_timestamp ).
+  ENDMETHOD.
+
+  METHOD zif_brx_moment~subtract.
+    IF me EQ infinity( ) OR me EQ initial( ).
+      ro_moment = me.
+      RETURN.
+    ENDIF.
+
+    DATA(lv_timezone) = determine_timezone( iv_timezone ).
+
+    " Calculate the new timestamp by subtracting components from the current timestamp
+    " Start from the largest unit to the smallest unit to avoid overflow issues
+
+    DATA(lv_timestamp) = gv_timestamp.
+
+    " Subtract the specified number of years from the current timestamp
+    lv_timestamp = tstmp_subtract( iv_timestamp = lv_timestamp iv_value = iv_years iv_unit = zif_brx_const=>gc_unit-year iv_timezone = lv_timezone ).
+
+    " Subtract the specified number of months from the current timestamp
+    lv_timestamp = tstmp_subtract( iv_timestamp = lv_timestamp iv_value = iv_months iv_unit = zif_brx_const=>gc_unit-month iv_timezone = lv_timezone ).
+
+    " Subtract the specified number of days from the current timestamp
+    lv_timestamp = tstmp_subtract( iv_timestamp = lv_timestamp iv_value = iv_days iv_unit = zif_brx_const=>gc_unit-day iv_timezone = lv_timezone ).
+
+    " Subtract the specified number of hours from the current timestamp
+    lv_timestamp = tstmp_subtract( iv_timestamp = lv_timestamp iv_value = iv_hours iv_unit = zif_brx_const=>gc_unit-hour iv_timezone = lv_timezone ).
+
+    " Subtract the specified number of minutes from the current timestamp
+    lv_timestamp = tstmp_subtract( iv_timestamp = lv_timestamp iv_value = iv_minutes iv_unit = zif_brx_const=>gc_unit-minute iv_timezone = lv_timezone ).
+
+    " Subtract the specified number of seconds from the current timestamp
+    lv_timestamp = tstmp_subtract( iv_timestamp = lv_timestamp iv_value = iv_seconds iv_unit = zif_brx_const=>gc_unit-second iv_timezone = lv_timezone ).
+
+    " Subtract the specified value and unit from the current timestamp
+    IF io_duration IS BOUND.
+      " Handle the case where the duration is infinite,
+      " as subtracting an infinite duration from a finite moment results in an initial moment (Big Bang :).
+      IF io_duration->is_infinite( ).
+        IF io_duration->sign( ) GT 0.
+          RETURN initial( ).
+        ELSE.
+          RETURN infinity( ).
+        ENDIF.
+      ENDIF.
+
+      lv_timestamp = tstmp_subtract( iv_timestamp = lv_timestamp iv_value = io_duration->as_seconds( ) iv_unit = zif_brx_const=>gc_unit-second iv_timezone = lv_timezone ).
+    ENDIF.
+
+    RETURN NEW zcl_brx_moment( lv_timestamp ).
+
   ENDMETHOD.
 
   METHOD to_valid_date.
@@ -439,22 +581,30 @@ CLASS zcl_brx_moment IMPLEMENTATION.
         EXIT.
       ENDIF.
 
-      CALL FUNCTION 'DATE_CHECK_PLAUSIBILITY'
-        EXPORTING
-          date                      = rv_date
-        EXCEPTIONS
-          plausibility_check_failed = 1
-          OTHERS                    = 2.
-      IF sy-subrc IS INITIAL.
-        EXIT.
-      ENDIF.
+      TRY.
+          cl_abap_tstmp=>systemtstmp_syst2utc(
+            EXPORTING
+              syst_date = rv_date
+              syst_time = '000000'
+            IMPORTING
+              utc_tstmp = DATA(lv_utc_tstmp)
+          ).
+
+          " if the conversion is successful, we can exit the loop
+          IF lv_utc_tstmp IS NOT INITIAL.
+            EXIT.
+          ENDIF.
+
+
+        CATCH cx_parameter_invalid_range.
+      ENDTRY.
 
       DATA(ls_date) = CONV ts_date_parts( rv_date ).
       IF ls_date-day GT 1.
         ls_date-day -= 1.
         rv_date = ls_date.
       ELSE.
-        RAISE EXCEPTION TYPE zcx_brx_error.
+        RAISE EXCEPTION TYPE zcx_brx_static_check.
       ENDIF.
     ENDDO.
 
@@ -523,6 +673,8 @@ CLASS zcl_brx_moment IMPLEMENTATION.
 
                 IF CONV i( ls_date-year ) + lv_new_months DIV 12 > 9999.
                   RAISE EXCEPTION TYPE cx_sy_arithmetic_overflow.
+                ELSEIF CONV i( ls_date-year ) + lv_new_months DIV 12 < 0.
+                  RAISE EXCEPTION TYPE cx_sy_arithmetic_overflow.
                 ENDIF.
                 ls_date-year += lv_new_months DIV 12.
                 ls_date-month = lv_new_months MOD 12.
@@ -541,16 +693,25 @@ CLASS zcl_brx_moment IMPLEMENTATION.
             RETURN floor( rv_timestamp ) + frac( iv_timestamp ).
 
           WHEN OTHERS.
-            RAISE EXCEPTION TYPE zcx_brx_error.
+            RAISE EXCEPTION TYPE zcx_brx_static_check.
         ENDCASE.
 
       CATCH cx_parameter_invalid cx_sy_arithmetic_overflow INTO DATA(lo_calculation_error).
 
-        RAISE EXCEPTION TYPE zcx_brx_error
+        RAISE EXCEPTION TYPE zcx_brx_static_check
           EXPORTING
             previous = lo_calculation_error.
     ENDTRY.
 
+  ENDMETHOD.
+
+  METHOD tstmp_subtract.
+    RETURN tstmp_add(
+      iv_timestamp = iv_timestamp
+      iv_value     = - iv_value
+      iv_unit      = iv_unit
+      iv_timezone  = iv_timezone
+    ).
   ENDMETHOD.
 
 
@@ -562,4 +723,20 @@ CLASS zcl_brx_moment IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
+  METHOD zif_brx_moment~compare.
+    IF io_moment IS NOT BOUND.
+      RETURN 1.
+    ELSE.
+      " The return is an integer, but timestampl is a floating point number,
+      " so a simple subtraction would return 0 if the difference is less than 1 second.
+      " To avoid this, we use the SIGN function to return -1, 0, or 1 based on the comparison.
+      RETURN sign( zif_brx_moment~as_timestampl( ) - io_moment->as_timestampl( ) ).
+    ENDIF.
+  ENDMETHOD.
+
+  METHOD zif_brx_moment~equals.
+    RETURN xsdbool( zif_brx_moment~compare( io_moment ) EQ 0 ).
+  ENDMETHOD.
+
 ENDCLASS.
+

@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCX_BRX_ERROR</CLSNAME>
+    <CLSNAME>ZCX_BRX_STATIC_CHECK</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>ABAP Building Brix: Error</DESCRIPT>
+    <DESCRIPT>ABAP Building Brix: Static Check Exception</DESCRIPT>
     <CATEGORY>40</CATEGORY>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>

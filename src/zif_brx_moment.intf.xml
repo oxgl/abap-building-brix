@@ -47,6 +47,11 @@
      <DESCRIPT>Returns the weekday of the moment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Compares the moment with another moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>END_OF</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns the end of given unit of time</DESCRIPT>
@@ -57,6 +62,11 @@
      <DESCRIPT>Returns the end of previous unit of time</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Checks if moments are equal</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>START_OF</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns the start of given unit of time</DESCRIPT>
@@ -65,6 +75,11 @@
      <CMPNAME>START_OF_NEXT</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns the start of next unit of time</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Subtracts a given amount of time from the moment</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
@@ -124,7 +139,7 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>ADD</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the addition fails</DESCRIPT>
     </SEOSUBCOTX>
@@ -183,6 +198,18 @@
      <DESCRIPT>Weekday of the moment</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <SCONAME>IO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment to compare with</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <SCONAME>RV_COMPARE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Comparison result</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
      <CMPNAME>END_OF</CMPNAME>
      <SCONAME>IV_TIMEZONE</SCONAME>
      <LANGU>E</LANGU>
@@ -202,7 +229,7 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>END_OF</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
     </SEOSUBCOTX>
@@ -226,9 +253,21 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>END_OF_PREVIOUS</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <SCONAME>IO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment to compare with</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <SCONAME>RV_EQUALS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns true if the moments are equal, false otherwise</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>START_OF</CMPNAME>
@@ -250,7 +289,7 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>START_OF</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
     </SEOSUBCOTX>
@@ -274,9 +313,69 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>START_OF_NEXT</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IV_DAYS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Days to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IV_HOURS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Hours to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IV_MINUTES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Minutes to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IV_MONTHS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Months to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IV_SECONDS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Seconds to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>IV_YEARS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Years to add</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment representing the result of the addition</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SUBTRACT</CMPNAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Exception raised if the addition fails</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

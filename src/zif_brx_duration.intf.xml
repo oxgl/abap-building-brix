@@ -22,6 +22,31 @@
      <DESCRIPT>Returns the duration in seconds</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Compares the duration with another duration</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Checks if the duration is equal to another duration</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_INFINITE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Checks if the duration is infinite (positive or negative)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>IS_INITIAL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Checks if the duration is zero</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SIGN</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sign of the duration (1 for pos., -1 for neg., 0 for zero)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>SUBTRACT</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Subtracts a given amount of time from the duration</DESCRIPT>
@@ -71,7 +96,7 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>ADD</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the addition fails</DESCRIPT>
     </SEOSUBCOTX>
@@ -80,6 +105,48 @@
      <SCONAME>RV_SECONDS</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Seconds</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <SCONAME>IO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration to compare with</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <SCONAME>RV_COMPARE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Comparison result</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <SCONAME>IO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Duration to compare with</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <SCONAME>RV_EQUALS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>True if the durations are equal, false otherwise</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_INFINITE</CMPNAME>
+     <SCONAME>RV_INFINITE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>True if the duration is infinite, false otherwise</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_INITIAL</CMPNAME>
+     <SCONAME>RV_INITIAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>True if the duration is zero, false otherwise</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>SIGN</CMPNAME>
+     <SCONAME>RV_SIGN</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sign of the duration</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>SUBTRACT</CMPNAME>
@@ -119,7 +186,7 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>SUBTRACT</CMPNAME>
-     <SCONAME>ZCX_BRX_ERROR</SCONAME>
+     <SCONAME>ZCX_BRX_STATIC_CHECK</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the addition fails</DESCRIPT>
     </SEOSUBCOTX>
