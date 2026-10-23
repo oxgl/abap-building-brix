@@ -4,10 +4,11 @@ ABAP Building Brix is a utility library that provides reusable building blocks f
 
 The repository currently contains:
 
-- domain interfaces (`zif_brx_moment`, `zif_brx_duration`)
-- concrete implementations (`zcl_brx_moment`, `zcl_brx_duration`)
-- shared constants (`zif_brx_const`)
-- typed exception handling (`zcx_brx_error`)
+- domain interfaces (`ZIF_BRX_MOMENT`, `ZIF_BRX_DURATION`)
+- concrete implementations (`ZCL_BRX_MOMENT`, `ZCL_BRX_DURATION`)
+- conversion utilities (`ZCL_BRX_CONVERSION`)
+- shared constants (`ZIF_BRX_CONST`)
+- typed exception handling (`ZCX_BRX_ERROR`)
 
 ---
 
@@ -26,7 +27,7 @@ This makes the package easier to consume, test, and extend in business code.
 
 ## Main Components
 
-## 1) `zif_brx_const` (Interface)
+## 1) `ZIF_BRX_CONST` (Interface)
 
 Central constants used by the library.
 
@@ -34,9 +35,9 @@ Central constants used by the library.
 
 Provides strongly-typed constants for:
 
-- **Time units** (`gc_unit`):
+- **Time units** (`GC_UNIT`):
   - `year`, `month`, `week`, `day`, `hour`, `minute`, `second`
-- **Weekdays** (`gc_weekday`):
+- **Weekdays** (`GC_WEEKDAY`):
   - `monday` .. `sunday` mapped to `0..6`
 
 ### Typical Usage
@@ -45,19 +46,19 @@ Use these constants instead of hardcoded literals when calling APIs such as `cre
 
 ---
 
-## 2) `zif_brx_duration` (Interface)
+## 2) `ZIF_BRX_DURATION` (Interface)
 
 Abstraction for a duration value (internally represented in seconds).
 
 ### Methods
 
-- **`as_seconds( ) -> tv_seconds`**  
+- **`AS_SECONDS( ) -> TV_SECONDS`**  
   Returns the duration in seconds.
 
-- **`add( io_duration | iv_seconds | iv_minutes | iv_hours | iv_days ) -> ro_duration`**  
+- **`ADD( IO_DURATION | IV_SECONDS | IV_MINUTES | IV_HOURS | IV_DAYS ) -> RO_DURATION`**  
   Returns a new duration by adding another duration and/or scalar values.
 
-- **`subtract( io_duration | iv_seconds | iv_minutes | iv_hours | iv_days ) -> ro_duration`**  
+- **`SUBTRACT( IO_DURATION | IV_SECONDS | IV_MINUTES | IV_HOURS | IV_DAYS ) -> RO_DURATION`**  
   Returns a new duration by subtracting another duration and/or scalar values.
 
 ### What it is used for
@@ -67,13 +68,13 @@ Abstraction for a duration value (internally represented in seconds).
 
 ---
 
-## 3) `zcl_brx_duration` (Class)
+## 3) `ZCL_BRX_DURATION` (Class)
 
-Concrete implementation of `zif_brx_duration`.
+Concrete implementation of `ZIF_BRX_DURATION`.
 
 ### Key Methods
 
-- **`create( iv_value, iv_unit ) -> ro_duration`** *(class-method)*  
+- **`CREATE( IV_VALUE, IV_UNIT ) -> RO_DURATION`** *(class-method)*  
   Factory method for creating duration instances.
 
   Supported fixed-size units:
@@ -84,10 +85,10 @@ Concrete implementation of `zif_brx_duration`.
 
   `month` and `year` are intentionally excluded because they are not fixed-length durations.
 
-- **`constructor( iv_seconds )`**  
+- **`CONSTRUCTOR( IV_SECONDS )`**  
   Internal initialization from seconds.
 
-- **`zif_brx_duration~as_seconds`**, **`~add`**, **`~subtract`**  
+- **`ZIF_BRX_DURATION~AS_SECONDS`**, **`~ADD`**, **`~SUBTRACT`**  
   Interface method implementations.
 
 ### What it is used for
@@ -97,31 +98,31 @@ Concrete implementation of `zif_brx_duration`.
 
 ---
 
-## 4) `zif_brx_moment` (Interface)
+## 4) `ZIF_BRX_MOMENT` (Interface)
 
 Abstraction for an instant in time.
 
 ### Core Methods
 
-- **`as_date( iv_timezone ) -> d`**  
+- **`AS_DATE( IV_TIMEZONE ) -> D`**  
   Returns date part in the requested timezone.
 
-- **`as_time( iv_timezone ) -> t`**  
+- **`AS_TIME( IV_TIMEZONE ) -> T`**  
   Returns time part in the requested timezone.
 
-- **`as_timestamp( ) -> timestamp`**  
+- **`AS_TIMESTAMP( ) -> TIMESTAMP`**  
   Returns short timestamp representation.
 
-- **`as_timestampl( ) -> timestampl`**  
+- **`AS_TIMESTAMPL( ) -> TIMESTAMPL`**  
   Returns long timestamp representation.
 
-- **`as_weekday( iv_timezone ) -> i`**  
+- **`AS_WEEKDAY( IV_TIMEZONE ) -> I`**  
   Returns weekday index.
 
-- **`as_string( ) -> string`**  
+- **`AS_STRING( ) -> STRING`**  
   Returns ISO-8601 formatted string.
 
-- **`end_of( iv_unit, iv_timezone ) -> ro_moment`**  
+- **`END_OF( IV_UNIT, IV_TIMEZONE ) -> RO_MOMENT`**  
   Returns a new moment at the end of the specified unit (for example day/week/month).
 
 ### What it is used for
@@ -132,29 +133,29 @@ Abstraction for an instant in time.
 
 ---
 
-## 5) `zcl_brx_moment` (Class)
+## 5) `ZCL_BRX_MOMENT` (Class)
 
-Concrete implementation of `zif_brx_moment`.
+Concrete implementation of `ZIF_BRX_MOMENT`.
 
 ### Key Class Methods
 
-- **`now( ) -> ro_moment`**  
+- **`NOW( ) -> RO_MOMENT`**  
   Creates/returns a moment representing current system time.
 
-- **`infinity( ) -> ro_moment`**  
+- **`INFINITY( ) -> RO_MOMENT`**  
   Returns a singleton representing a maximal/infinite timestamp.
 
-- **`initial( ) -> ro_moment`**  
+- **`INITIAL( ) -> RO_MOMENT`**  
   Returns a singleton representing an initial/zero timestamp.
 
-- **`class_constructor`**  
+- **`CLASS_CONSTRUCTOR`**  
   Performs class-level initialization.
 
 ### Internal Model (high level)
 
-- Timestamp/date/time boundary constants (`gc_timestamp`, `gc_date`, `gc_time`)
-- Current moment storage (`gv_timestamp`)
-- Singleton references (`go_infinity`, `go_initial`)
+- Timestamp/date/time boundary constants (`GC_TIMESTAMP`, `GC_DATE`, `GC_TIME`)
+- Current moment storage (`GV_TIMESTAMP`)
+- Singleton references (`GO_INFINITY`, `GO_INITIAL`)
 
 ### What it is used for
 
@@ -163,7 +164,18 @@ Concrete implementation of `zif_brx_moment`.
 
 ---
 
-## 6) `zcx_brx_error` (Exception Class)
+## 6) `ZCL_BRX_CONVERSION` (Class)
+
+Utility class for conversion-related operations within the BRX domain.
+
+### Purpose
+
+- Centralizes conversion logic to keep domain classes focused.
+- Improves reuse and consistency of transformations.
+
+---
+
+## 7) `ZCX_BRX_ERROR` (Exception Class)
 
 Typed library exception (`CX_STATIC_CHECK`) implementing:
 
@@ -176,7 +188,7 @@ Provides consistent exception semantics across BRX components, including support
 
 ### Constructor
 
-- **`constructor( textid, previous )`**  
+- **`CONSTRUCTOR( TEXTID, PREVIOUS )`**  
   Initializes error context with optional message ID and nested exception.
 
 ---
@@ -216,7 +228,7 @@ DATA(lo_end_of_day) = lo_now->end_of(
 
 ## Notes for Contributors
 
-- Prefer interfaces (`zif_*`) in consuming code where possible.
-- Use `zif_brx_const` for unit values to avoid literal drift.
-- Handle `zcx_brx_error` explicitly in calling layers.
+- Prefer interfaces (`ZIF_*`) in consuming code where possible.
+- Use `ZIF_BRX_CONST` for unit values to avoid literal drift.
+- Handle `ZCX_BRX_ERROR` explicitly in calling layers.
 - Keep duration logic in fixed-size units unless business logic defines explicit calendar semantics.
