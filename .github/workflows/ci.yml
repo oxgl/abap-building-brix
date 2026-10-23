@@ -17,4 +17,4 @@ jobs:
           node-version: 22
 
       - name: Run abaplint
-        run: npx abaplint
+        run: npx @abaplint/cli
