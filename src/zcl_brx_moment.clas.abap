@@ -7,13 +7,13 @@ CLASS zcl_brx_moment DEFINITION
 
     INTERFACES zif_brx_moment .
 
-    "! <p class="shorttext synchronized" lang="en">Class constructor</p>
-    CLASS-METHODS class_constructor .
+
     "! <p class="shorttext synchronized" lang="en">Creates a new moment instance</p>
     "!
     "! @parameter iv_timestamp | <p class="shorttext synchronized" lang="en">Timestamp of moment</p>
     "! @parameter iv_date | <p class="shorttext synchronized" lang="en">Date of moment</p>
     "! @parameter iv_time | <p class="shorttext synchronized" lang="en">Time of moment</p>
+    "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone for date and time conversion</p>
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
     CLASS-METHODS create
       IMPORTING
@@ -50,25 +50,34 @@ CLASS zcl_brx_moment DEFINITION
         zcx_brx_conversion_failed
         zcx_brx_out_of_range.
 
+
     "! <p class="shorttext synchronized" lang="en">Returns a reference to current moment</p>
     "!
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
     CLASS-METHODS now
       RETURNING
         VALUE(ro_moment) TYPE REF TO zif_brx_moment .
+
+
     "! <p class="shorttext synchronized" lang="en">Returns a reference to infinite moment</p>
     "!
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>  	
     CLASS-METHODS infinity
       RETURNING
         VALUE(ro_moment) TYPE REF TO zif_brx_moment .
+
+
     "! <p class="shorttext synchronized" lang="en">Returns a reference to zero moment</p>
     "!
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
     CLASS-METHODS initial
       RETURNING
         VALUE(ro_moment) TYPE REF TO zif_brx_moment .
+
+
   PROTECTED SECTION.
+
+
     TYPES:
       "! <p class="shorttext synchronized" lang="en">Date parts structure</p>
       BEGIN OF ts_date_parts,
@@ -76,6 +85,7 @@ CLASS zcl_brx_moment DEFINITION
         month TYPE n LENGTH 2,
         day   TYPE n LENGTH 2,
       END OF ts_date_parts.
+
 
     TYPES:
       "! <p class="shorttext synchronized" lang="en">Time parts structure</p>
@@ -85,6 +95,7 @@ CLASS zcl_brx_moment DEFINITION
         second TYPE n LENGTH 2,
       END OF ts_time_parts.
 
+
     CONSTANTS:
       "! <p class="shorttext synchronized" lang="en">Timestamp constants</p>
       BEGIN OF gc_timestamp,
@@ -93,12 +104,14 @@ CLASS zcl_brx_moment DEFINITION
         end_of_second TYPE timestampl VALUE '0.9999999',
       END OF gc_timestamp.
 
+
     CONSTANTS:
       "! <p class="shorttext synchronized" lang="en">Date constants</p>
       BEGIN OF gc_date,
         infinity TYPE d VALUE '99991231',
         initial  TYPE d VALUE '00000000',
       END OF gc_date.
+
 
     CONSTANTS:
       "! <p class="shorttext synchronized" lang="en">Time constants</p>
@@ -107,27 +120,28 @@ CLASS zcl_brx_moment DEFINITION
         initial TYPE t VALUE '000000',
       END OF gc_time.
 
+
     DATA:
       "! <p class="shorttext synchronized" lang="en">Timestamp of current moment</p>
       gv_timestamp TYPE timestampl.
 
+
     CLASS-DATA:
       "! <p class="shorttext synchronized" lang="en">Reference to singleton instance of infinite moment</p>
-      go_infinity TYPE REF TO zif_brx_moment.
+      go_infinity TYPE REF TO zif_brx_moment,
 
-    CLASS-DATA:
       "! <p class="shorttext synchronized" lang="en">Reference to singleton instance of zero moment</p>
-      go_initial     TYPE REF TO zif_brx_moment.
+      go_initial  TYPE REF TO zif_brx_moment.
 
-
-    METHODS:
-	  "! <p class="shorttext synchronized" lang="en">Constructor</p>
-	  "!
+    "! <p class="shorttext synchronized" lang="en">Constructor</p>
+    "!
     "! @parameter iv_timestamp | <p class="shorttext synchronized" lang="en">Timestamp of moment</p>
-	  constructor
-		IMPORTING
-		  iv_timestamp TYPE timestampl OPTIONAL.
-    		
+    METHODS constructor
+      IMPORTING
+        iv_timestamp TYPE timestampl OPTIONAL.
+
+    			
+
     "! <p class="shorttext synchronized" lang="en">Validates a date value and returns it as a date type</p>
     "!
     "! @parameter iv_date | <p class="shorttext synchronized" lang="en">Date string to be validated</p>
@@ -140,6 +154,8 @@ CLASS zcl_brx_moment DEFINITION
         VALUE(rv_date) TYPE d
       RAISING
         zcx_brx_static_check.
+
+
 
     "! <p class="shorttext synchronized" lang="en">Adds a value to a timestamp</p>
     "!
@@ -159,6 +175,8 @@ CLASS zcl_brx_moment DEFINITION
       RAISING
         zcx_brx_static_check.
 
+
+
     "! <p class="shorttext synchronized" lang="en">Subtracts a value from a timestamp</p>
     "!
     "! @parameter iv_timestamp | <p class="shorttext synchronized" lang="en">Timestamp from which the value will be subtracted</p>
@@ -176,6 +194,8 @@ CLASS zcl_brx_moment DEFINITION
         VALUE(rv_timestamp) TYPE timestampl
       RAISING
         zcx_brx_static_check.
+
+
 
     "! <p class="shorttext synchronized" lang="en">Determines the time zone to be used for operations</p>
     "!
@@ -195,11 +215,6 @@ ENDCLASS.
 
 
 CLASS zcl_brx_moment IMPLEMENTATION.
-
-
-  METHOD class_constructor.
-
-  ENDMETHOD.
 
 
   METHOD constructor.

@@ -37,6 +37,7 @@ CLASS zcl_brx_conversion DEFINITION
         zcx_brx_conversion_failed
         zcx_brx_out_of_range.
 
+
     "! <p class="shorttext synchronized" lang="en">Converts a timestamp string to an internal timestamp</p>
     "!
     "! <p>Accepted input formats (depending on iv_format):</p>
@@ -70,6 +71,7 @@ CLASS zcl_brx_conversion DEFINITION
       RAISING
         zcx_brx_conversion_failed
         zcx_brx_out_of_range.
+
 
     "! <p class="shorttext synchronized" lang="en">Converts a time string to an internal time representation</p>
     "!

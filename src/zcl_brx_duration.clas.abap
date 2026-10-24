@@ -8,6 +8,7 @@ CLASS zcl_brx_duration DEFINITION
 
     INTERFACES zif_brx_duration .
 
+
     "! <p class="shorttext synchronized" lang="en">Create a new instance of the duration</p>
     "!
     "! <p>Do not use units month and year, because they are not fixed values.
@@ -27,12 +28,14 @@ CLASS zcl_brx_duration DEFINITION
       RAISING
         zcx_brx_static_check.
 
+
     "! <p class="shorttext synchronized" lang="en">Get the duration representing initial</p>
     "!
     "! @parameter ro_duration | <p class="shorttext synchronized" lang="en">Instance of the duration representing initial</p>
     CLASS-METHODS initial
       RETURNING
         VALUE(ro_duration) TYPE REF TO zif_brx_duration.
+
 
     "! <p class="shorttext synchronized" lang="en">Get the duration representing infinity</p>
     "!
@@ -44,7 +47,10 @@ CLASS zcl_brx_duration DEFINITION
       RETURNING
         VALUE(ro_duration) TYPE REF TO zif_brx_duration.
 
+
   PROTECTED SECTION.
+
+
     "! <p class="shorttext synchronized" lang="en">Constructor</p>
     "!
     "! @parameter iv_seconds | <p class="shorttext synchronized" lang="en">Duration in seconds</p>
@@ -52,9 +58,6 @@ CLASS zcl_brx_duration DEFINITION
       IMPORTING
         iv_seconds TYPE numeric.
 
-    DATA:
-      "! <p class="shorttext synchronized" lang="en">Duration in seconds</p>
-      gv_seconds TYPE zif_brx_duration=>tv_seconds.
 
     CONSTANTS:
       "! <p class="shorttext synchronized" lang="en">Duration constants</p>
@@ -63,14 +66,21 @@ CLASS zcl_brx_duration DEFINITION
         initial  TYPE zif_brx_type=>tv_timestamp_long VALUE '0',
       END OF gc_duration.
 
+
+    DATA:
+      "! <p class="shorttext synchronized" lang="en">Duration in seconds</p>
+      gv_seconds TYPE zif_brx_duration=>tv_seconds.
+
+
     CLASS-DATA:
-      " Instance of the duration representing infinity
+      "! <p class="shorttext synchronized" lang="en">Instance of the duration representing positive infinity</p>
       go_infinity_positive TYPE REF TO zif_brx_duration,
+
+      "! <p class="shorttext synchronized" lang="en">Instance of the duration representing negative infinity</p>
       go_infinity_negative TYPE REF TO zif_brx_duration,
 
-      " Instance of the duration representing initial
+      "! <p class="shorttext synchronized" lang="en">Instance of the duration representing initial</p>
       go_initial           TYPE REF TO zif_brx_duration.
-
 
 
   PRIVATE SECTION.

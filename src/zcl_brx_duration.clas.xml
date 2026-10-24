@@ -28,6 +28,21 @@
      <DESCRIPT>Duration constants</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GO_INFINITY_NEGATIVE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of the duration representing negative infinity</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GO_INFINITY_POSITIVE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of the duration representing positive infinity</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GO_INITIAL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Instance of the duration representing initial</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>GV_SECONDS</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Duration in seconds</DESCRIPT>
