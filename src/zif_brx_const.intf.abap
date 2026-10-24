@@ -5,7 +5,7 @@ INTERFACE zif_brx_const
 
   CONSTANTS:
     "! <p class="shorttext synchronized" lang="en">Unit of measure</p>
-    BEGIN OF gc_unit,
+    BEGIN OF gc_time_unit,
       year   TYPE zif_brx_type=>tv_time_unit VALUE 'JHR',
       month  TYPE zif_brx_type=>tv_time_unit VALUE 'MON',
       week   TYPE zif_brx_type=>tv_time_unit VALUE 'WCH',
@@ -13,7 +13,7 @@ INTERFACE zif_brx_const
       hour   TYPE zif_brx_type=>tv_time_unit VALUE 'STD',
       minute TYPE zif_brx_type=>tv_time_unit VALUE 'MIN',
       second TYPE zif_brx_type=>tv_time_unit VALUE 'S',
-    END OF gc_unit .
+    END OF gc_time_unit .
 
   CONSTANTS:
     "! <p class="shorttext synchronized" lang="en">Weekday</p>
@@ -59,5 +59,31 @@ INTERFACE zif_brx_const
       text       TYPE zif_brx_type=>tv_timestamp_format VALUE 'T',
       unknown    TYPE zif_brx_type=>tv_timestamp_format VALUE ' ',
     END OF gc_timestamp_format .
+
+  CONSTANTS:
+    "! <p class="shorttext synchronized" lang="en">Timestamp constants</p>
+    BEGIN OF gc_timestamp,
+      infinity      TYPE zif_brx_type=>tv_timestamp_long VALUE '99991231235959.9999999',
+      initial       TYPE zif_brx_type=>tv_timestamp_long VALUE '0',
+      end_of_second TYPE zif_brx_type=>tv_timestamp_long VALUE '0.9999999',
+    END OF gc_timestamp.
+
+  CONSTANTS:
+    "! <p class="shorttext synchronized" lang="en">Date constants</p>
+    BEGIN OF gc_date,
+      infinity TYPE d VALUE '99991231',
+      initial  TYPE d VALUE '00000000',
+      maximum  TYPE d VALUE '99991231',
+      minimum  TYPE d VALUE '00010101',
+    END OF gc_date.
+
+
+  CONSTANTS:
+    "! <p class="shorttext synchronized" lang="en">Time constants</p>
+    BEGIN OF gc_time,
+      maximum TYPE t VALUE '235959',
+      minimum TYPE t VALUE '000000',
+      initial TYPE t VALUE '000000',
+    END OF gc_time.
 
 ENDINTERFACE.

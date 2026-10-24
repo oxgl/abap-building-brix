@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_BRX_INTERVAL</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Interval</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Compares the interval to another interval</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DURATION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the duration of the interval.</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>END</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the end moment of the interval.</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Checks if the interval equals another interval</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>START</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the start moment of the interval.</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <SCONAME>IO_INTERVAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Interval to compare with</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>COMPARE</CMPNAME>
+     <SCONAME>RV_COMPARE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Comparison result</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DURATION</CMPNAME>
+     <SCONAME>RO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The duration of the interval.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>END</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The end moment of the interval.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <SCONAME>IO_INTERVAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Interval to compare with</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EQUALS</CMPNAME>
+     <SCONAME>RV_EQUALS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>True if the durations are equal, false otherwise</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>START</CMPNAME>
+     <SCONAME>RO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The start moment of the interval.</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

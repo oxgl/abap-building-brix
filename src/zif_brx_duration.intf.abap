@@ -81,6 +81,14 @@ INTERFACE zif_brx_duration
       VALUE(rv_sign) TYPE i.
 
 
+  "! <p class="shorttext synchronized" lang="en">Returns the absolute value of the duration</p>
+  "!
+  "! @parameter ro_duration | <p class="shorttext synchronized" lang="en">Absolute duration</p>
+  METHODS absolute
+    RETURNING
+      VALUE(ro_duration) TYPE REF TO zif_brx_duration.
+
+
   "! <p class="shorttext synchronized" lang="en">Checks if the duration is equal to another duration</p>
   "!
   "! @parameter io_duration | <p class="shorttext synchronized" lang="en">Duration to compare with</p>

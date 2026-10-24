@@ -12,6 +12,11 @@
    </VSEOINTERF>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
+     <CMPNAME>ABSOLUTE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the absolute value of the duration</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>ADD</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Adds a given amount of time to the duration</DESCRIPT>
@@ -58,6 +63,12 @@
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>ABSOLUTE</CMPNAME>
+     <SCONAME>RO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Absolute duration</DESCRIPT>
+    </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>ADD</CMPNAME>
      <SCONAME>IO_DURATION</SCONAME>

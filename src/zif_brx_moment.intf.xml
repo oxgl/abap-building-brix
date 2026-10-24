@@ -52,14 +52,19 @@
      <DESCRIPT>Compares the moment with another moment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>END_OF</CMPNAME>
+     <CMPNAME>CURRENT</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Returns the end of given unit of time</DESCRIPT>
+     <DESCRIPT>Returns the interval of given unit containing the moment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
+     <CMPNAME>DELTA</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Returns the end of previous unit of time</DESCRIPT>
+     <DESCRIPT>Returns the duration between moments (signed)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DISTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the duration between moments (absolute value)</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>EQUALS</CMPNAME>
@@ -67,14 +72,24 @@
      <DESCRIPT>Checks if moments are equal</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>START_OF</CMPNAME>
+     <CMPNAME>IS_INFINITY</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Returns the start of given unit of time</DESCRIPT>
+     <DESCRIPT>Checks if the moment is the final moment (infinite time)</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <CMPNAME>IS_INITIAL</CMPNAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Returns the start of next unit of time</DESCRIPT>
+     <DESCRIPT>Checks if the moment is the initial moment (zero time)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>NEXT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the interval of given unit after the moment</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PREVIOUS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns the interval of given unit before the moment</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>SUBTRACT</CMPNAME>
@@ -210,49 +225,61 @@
      <DESCRIPT>Comparison result</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF</CMPNAME>
+     <CMPNAME>CURRENT</CMPNAME>
      <SCONAME>IV_TIMEZONE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Time zone</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF</CMPNAME>
+     <CMPNAME>CURRENT</CMPNAME>
      <SCONAME>IV_UNIT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Unit of time</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF</CMPNAME>
-     <SCONAME>RO_MOMENT</SCONAME>
+     <CMPNAME>CURRENT</CMPNAME>
+     <SCONAME>RO_INTERVAL</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Moment representing the end of given unit of time</DESCRIPT>
+     <DESCRIPT>The interval</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF</CMPNAME>
+     <CMPNAME>CURRENT</CMPNAME>
      <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
-     <SCONAME>IV_TIMEZONE</SCONAME>
+     <CMPNAME>DELTA</CMPNAME>
+     <SCONAME>IO_MOMENT</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Time zone</DESCRIPT>
+     <DESCRIPT>Moment to calculate the difference against</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
-     <SCONAME>IV_UNIT</SCONAME>
+     <CMPNAME>DELTA</CMPNAME>
+     <SCONAME>RO_DURATION</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Unit of time</DESCRIPT>
+     <DESCRIPT>Signed duration between the two moments</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
-     <SCONAME>RO_MOMENT</SCONAME>
+     <CMPNAME>DELTA</CMPNAME>
+     <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Moment representing the end of previous unit of time</DESCRIPT>
+     <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>END_OF_PREVIOUS</CMPNAME>
+     <CMPNAME>DISTANCE</CMPNAME>
+     <SCONAME>IO_MOMENT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Moment to calculate the difference against</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISTANCE</CMPNAME>
+     <SCONAME>RO_DURATION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Signed duration between the two moments</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>DISTANCE</CMPNAME>
      <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
@@ -270,49 +297,61 @@
      <DESCRIPT>Returns true if the moments are equal, false otherwise</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF</CMPNAME>
+     <CMPNAME>IS_INFINITY</CMPNAME>
+     <SCONAME>RV_INFINITE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>True if the moment is the final moment, false otherwise</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>IS_INITIAL</CMPNAME>
+     <SCONAME>RV_INITIAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>True if the moment is the initial moment, false otherwise</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>NEXT</CMPNAME>
      <SCONAME>IV_TIMEZONE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Time zone</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF</CMPNAME>
+     <CMPNAME>NEXT</CMPNAME>
      <SCONAME>IV_UNIT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Unit of time</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF</CMPNAME>
-     <SCONAME>RO_MOMENT</SCONAME>
+     <CMPNAME>NEXT</CMPNAME>
+     <SCONAME>RO_INTERVAL</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Moment representing the start of given unit of time</DESCRIPT>
+     <DESCRIPT>The interval</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF</CMPNAME>
+     <CMPNAME>NEXT</CMPNAME>
      <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <CMPNAME>PREVIOUS</CMPNAME>
      <SCONAME>IV_TIMEZONE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Time zone</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <CMPNAME>PREVIOUS</CMPNAME>
      <SCONAME>IV_UNIT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Unit of time</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF_NEXT</CMPNAME>
-     <SCONAME>RO_MOMENT</SCONAME>
+     <CMPNAME>PREVIOUS</CMPNAME>
+     <SCONAME>RO_INTERVAL</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Moment representing the start of next unit of time</DESCRIPT>
+     <DESCRIPT>The interval</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>START_OF_NEXT</CMPNAME>
+     <CMPNAME>PREVIOUS</CMPNAME>
      <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised if the calculation fails</DESCRIPT>

@@ -29,21 +29,6 @@
      <DESCRIPT>Determines the time zone to be used for operations</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>GC_DATE</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Date constants</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>GC_TIME</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Time constants</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>GC_TIMESTAMP</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Timestamp constants</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
      <CMPNAME>GO_INFINITY</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Reference to singleton instance of infinite moment</DESCRIPT>
@@ -82,6 +67,11 @@
      <CMPNAME>TO_VALID_DATE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Validates a date value and returns it as a date type</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>TO_VALID_TIMESTAMP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Converts a date and time to a valid timestamp</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>TSTMP_ADD</CMPNAME>
@@ -212,6 +202,30 @@
      <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Exception raised in case of invalid date</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TO_VALID_TIMESTAMP</CMPNAME>
+     <SCONAME>IV_DATE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Date to be converted</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TO_VALID_TIMESTAMP</CMPNAME>
+     <SCONAME>IV_TIME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time to be converted</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TO_VALID_TIMESTAMP</CMPNAME>
+     <SCONAME>IV_TIMEZONE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Time zone for the conversion</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TO_VALID_TIMESTAMP</CMPNAME>
+     <SCONAME>RV_TIMESTAMP</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Resulting timestamp</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>TSTMP_ADD</CMPNAME>

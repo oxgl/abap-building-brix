@@ -43,7 +43,7 @@ CLASS ltc_brx_duration IMPLEMENTATION.
     TRY.
         DATA(lo_dur) = zcl_brx_duration=>create(
           iv_value = 90
-          iv_unit  = zif_brx_const=>gc_unit-second ).
+          iv_unit  = zif_brx_const=>gc_time_unit-second ).
 
         assert_seconds(
           io_duration = lo_dur
@@ -60,7 +60,7 @@ CLASS ltc_brx_duration IMPLEMENTATION.
     TRY.
         DATA(lo_dur) = zcl_brx_duration=>create(
           iv_value = 2
-          iv_unit  = zif_brx_const=>gc_unit-minute ).
+          iv_unit  = zif_brx_const=>gc_time_unit-minute ).
 
         assert_seconds(
           io_duration = lo_dur
@@ -122,7 +122,7 @@ CLASS ltc_brx_duration IMPLEMENTATION.
         DATA(lo_a) = zcl_brx_duration=>create( iv_value = 10 ).
         DATA(lo_b) = zcl_brx_duration=>create(
           iv_value = 2
-          iv_unit  = zif_brx_const=>gc_unit-minute ).
+          iv_unit  = zif_brx_const=>gc_time_unit-minute ).
 
         DATA(lo_res) = lo_a->add( io_duration = lo_b ).
 
@@ -248,7 +248,7 @@ CLASS ltc_brx_duration IMPLEMENTATION.
     TRY.
         DATA(lo_dur) = zcl_brx_duration=>create(
           iv_value = 1
-          iv_unit  = zif_brx_const=>gc_unit-month ).
+          iv_unit  = zif_brx_const=>gc_time_unit-month ).
 
         cl_abap_unit_assert=>fail(
           msg = 'Expected zcx_brx_invalid_value for invalid unit' ).

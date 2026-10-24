@@ -53,64 +53,51 @@ INTERFACE zif_brx_moment
     RETURNING
       VALUE(rv_string) TYPE string.
 
-  "! <p class="shorttext synchronized" lang="en">Returns the end of given unit of time</p>
+
+  "! <p class="shorttext synchronized" lang="en">Returns the interval of given unit containing the moment</p>
   "!
   "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
   "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
-  "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the end of given unit of time</p>
+  "! @parameter ro_interval | <p class="shorttext synchronized" lang="en">The interval</p>
   "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>
-  METHODS end_of
+  METHODS current
     IMPORTING
-      iv_unit          TYPE zif_brx_type=>tv_time_unit
-      iv_timezone      TYPE zif_brx_type=>tv_time_zone OPTIONAL
+      iv_unit            TYPE zif_brx_type=>tv_time_unit
+      iv_timezone        TYPE zif_brx_type=>tv_time_zone OPTIONAL
     RETURNING
-      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+      VALUE(ro_interval) TYPE REF TO zif_brx_interval
     RAISING
       zcx_brx_invalid_value .
 
-  "! <p class="shorttext synchronized" lang="en">Returns the start of given unit of time</p>
+
+  "! <p class="shorttext synchronized" lang="en">Returns the interval of given unit after the moment</p>
   "!
   "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
   "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
-  "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the start of given unit of time</p>
+  "! @parameter ro_interval | <p class="shorttext synchronized" lang="en">The interval</p>
   "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>
-  METHODS start_of
+  METHODS next
     IMPORTING
-      iv_unit          TYPE zif_brx_type=>tv_time_unit
-      iv_timezone      TYPE zif_brx_type=>tv_time_zone OPTIONAL
+      iv_unit            TYPE zif_brx_type=>tv_time_unit
+      iv_timezone        TYPE zif_brx_type=>tv_time_zone OPTIONAL
     RETURNING
-      VALUE(ro_moment) TYPE REF TO zif_brx_moment
-    RAISING
-      zcx_brx_invalid_value .
-
-  "! <p class="shorttext synchronized" lang="en">Returns the end of previous unit of time</p>
-  "!
-  "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
-  "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
-  "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the end of previous unit of time</p>
-  "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>"!
-  METHODS end_of_previous
-    IMPORTING
-      iv_unit          TYPE zif_brx_type=>tv_time_unit
-      iv_timezone      TYPE zif_brx_type=>tv_time_zone OPTIONAL
-    RETURNING
-      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+      VALUE(ro_interval) TYPE REF TO zif_brx_interval
     RAISING
       zcx_brx_invalid_value .
 
 
-  "! <p class="shorttext synchronized" lang="en">Returns the start of next unit of time</p>
+  "! <p class="shorttext synchronized" lang="en">Returns the interval of given unit before the moment</p>
   "!
   "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of time</p>
   "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone</p>
-  "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Moment representing the start of next unit of time</p>
-  "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>"!"!
-  METHODS start_of_next
+  "! @parameter ro_interval | <p class="shorttext synchronized" lang="en">The interval</p>
+  "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>
+  METHODS previous
     IMPORTING
-      iv_unit          TYPE zif_brx_type=>tv_time_unit
-      iv_timezone      TYPE zif_brx_type=>tv_time_zone OPTIONAL
+      iv_unit            TYPE zif_brx_type=>tv_time_unit
+      iv_timezone        TYPE zif_brx_type=>tv_time_zone OPTIONAL
     RETURNING
-      VALUE(ro_moment) TYPE REF TO zif_brx_moment
+      VALUE(ro_interval) TYPE REF TO zif_brx_interval
     RAISING
       zcx_brx_invalid_value .
 
@@ -186,6 +173,61 @@ INTERFACE zif_brx_moment
       VALUE(ro_moment) TYPE REF TO zif_brx_moment
     RAISING
       zcx_brx_invalid_value.
+
+
+  "! <p class="shorttext synchronized" lang="en">Returns the duration between moments (signed)</p>
+  "!
+  "! <p>The result is signed and calculated as
+  "! <em>this_moment - io_moment</em>.</p>
+  "! <ul>
+  "! <li> &gt; 0 if this moment is after <em>io_moment</em></li>
+  "! <li> = 0 if both moments are equal</li>
+  "! <li> &lt; 0 if this moment is before <em>io_moment</em></li>
+  "! </ul>
+  "!
+  "! @parameter io_moment | <p class="shorttext synchronized" lang="en">Moment to calculate the difference against</p>
+  "! @parameter ro_duration | <p class="shorttext synchronized" lang="en">Signed duration between the two moments</p>
+  "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>
+  METHODS delta
+    IMPORTING
+      !io_moment         TYPE REF TO zif_brx_moment
+    RETURNING
+      VALUE(ro_duration) TYPE REF TO zif_brx_duration
+    RAISING
+      zcx_brx_invalid_value.
+
+
+  "! <p class="shorttext synchronized" lang="en">Returns the duration between moments (absolute value)</p>
+  "!
+  "! <p>The result is unsigned and calculated as
+  "! <em>abs( this_moment - io_moment )</em>.</p>
+  "!
+  "! @parameter io_moment | <p class="shorttext synchronized" lang="en">Moment to calculate the difference against</p>
+  "! @parameter ro_duration | <p class="shorttext synchronized" lang="en">Signed duration between the two moments</p>
+  "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the calculation fails</p>
+  METHODS distance
+    IMPORTING
+      !io_moment         TYPE REF TO zif_brx_moment
+    RETURNING
+      VALUE(ro_duration) TYPE REF TO zif_brx_duration
+    RAISING
+      zcx_brx_invalid_value.
+
+
+  "! <p class="shorttext synchronized" lang="en">Checks if the moment is the initial moment (zero time)</p>
+  "!
+  "! @parameter rv_initial | <p class="shorttext synchronized" lang="en">True if the moment is the initial moment, false otherwise</p>
+  METHODS is_initial
+    RETURNING
+      VALUE(rv_initial) TYPE abap_bool.
+
+
+  "! <p class="shorttext synchronized" lang="en">Checks if the moment is the final moment (infinite time)</p>
+  "!
+  "! @parameter rv_infinite | <p class="shorttext synchronized" lang="en">True if the moment is the final moment, false otherwise</p>
+  METHODS is_infinity
+    RETURNING
+      VALUE(rv_infinite) TYPE abap_bool.
 
 
   "! <p class="shorttext synchronized" lang="en">Checks if moments are equal</p>

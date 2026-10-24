@@ -21,7 +21,7 @@ CLASS zcl_brx_duration DEFINITION
     CLASS-METHODS create
       IMPORTING
         !iv_value          TYPE numeric OPTIONAL
-        !iv_unit           TYPE zif_brx_type=>tv_time_unit DEFAULT zif_brx_const=>gc_unit-second
+        !iv_unit           TYPE zif_brx_type=>tv_time_unit DEFAULT zif_brx_const=>gc_time_unit-second
           PREFERRED PARAMETER iv_value
       RETURNING
         VALUE(ro_duration) TYPE REF TO zif_brx_duration
@@ -99,13 +99,13 @@ CLASS zcl_brx_duration IMPLEMENTATION.
     DATA(lv_seconds) = VALUE zif_brx_duration=>tv_seconds( ).
     IF iv_value IS NOT INITIAL.
       CASE iv_unit.
-        WHEN zif_brx_const=>gc_unit-day.
+        WHEN zif_brx_const=>gc_time_unit-day.
           lv_seconds += iv_value * 86400.
-        WHEN zif_brx_const=>gc_unit-hour.
+        WHEN zif_brx_const=>gc_time_unit-hour.
           lv_seconds += iv_value * 3600.
-        WHEN zif_brx_const=>gc_unit-minute.
+        WHEN zif_brx_const=>gc_time_unit-minute.
           lv_seconds += iv_value * 60.
-        WHEN zif_brx_const=>gc_unit-second.
+        WHEN zif_brx_const=>gc_time_unit-second.
           lv_seconds += iv_value.
         WHEN OTHERS.
           RAISE EXCEPTION TYPE zcx_brx_invalid_value
@@ -125,6 +125,29 @@ CLASS zcl_brx_duration IMPLEMENTATION.
       RETURN NEW zcl_brx_duration( lv_seconds ).
     ENDIF.
 
+  ENDMETHOD.
+
+
+  METHOD infinity.
+    IF iv_negative EQ abap_true.
+      IF go_infinity_negative IS NOT BOUND.
+        go_infinity_negative = NEW zcl_brx_duration( - gc_duration-infinity ).
+      ENDIF.
+      RETURN go_infinity_negative.
+    ELSE.
+      IF go_infinity_positive IS NOT BOUND.
+        go_infinity_positive = NEW zcl_brx_duration( gc_duration-infinity ).
+      ENDIF.
+      RETURN go_infinity_positive.
+    ENDIF.
+  ENDMETHOD.
+
+
+  METHOD initial.
+    IF go_initial IS NOT BOUND.
+      go_initial = NEW zcl_brx_duration( gc_duration-initial ).
+    ENDIF.
+    RETURN go_initial.
   ENDMETHOD.
 
 
@@ -156,6 +179,7 @@ CLASS zcl_brx_duration IMPLEMENTATION.
     RETURN NEW zcl_brx_duration( lv_seconds ).
   ENDMETHOD.
 
+
   METHOD zif_brx_duration~compare.
     IF io_duration IS NOT BOUND.
       RETURN 1.
@@ -167,30 +191,11 @@ CLASS zcl_brx_duration IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 
+
   METHOD zif_brx_duration~equals.
     RETURN xsdbool( zif_brx_duration~compare( io_duration ) EQ 0 ).
   ENDMETHOD.
 
-  METHOD infinity.
-    IF iv_negative EQ abap_true.
-      IF go_infinity_negative IS NOT BOUND.
-        go_infinity_negative = NEW zcl_brx_duration( - gc_duration-infinity ).
-      ENDIF.
-      RETURN go_infinity_negative.
-    ELSE.
-      IF go_infinity_positive IS NOT BOUND.
-        go_infinity_positive = NEW zcl_brx_duration( gc_duration-infinity ).
-      ENDIF.
-      RETURN go_infinity_positive.
-    ENDIF.
-  ENDMETHOD.
-
-  METHOD initial.
-    IF go_initial IS NOT BOUND.
-      go_initial = NEW zcl_brx_duration( gc_duration-initial ).
-    ENDIF.
-    RETURN go_initial.
-  ENDMETHOD.
 
   METHOD zif_brx_duration~is_infinite.
     RETURN xsdbool(
@@ -198,12 +203,23 @@ CLASS zcl_brx_duration IMPLEMENTATION.
           OR gv_seconds LE - gc_duration-infinity ).
   ENDMETHOD.
 
+
   METHOD zif_brx_duration~is_initial.
     RETURN xsdbool( gv_seconds EQ gc_duration-initial ).
   ENDMETHOD.
 
+
   METHOD zif_brx_duration~sign.
     RETURN sign( gv_seconds ).
+  ENDMETHOD.
+
+
+  METHOD zif_brx_duration~absolute.
+    IF gv_seconds GE 0.
+      RETURN me.
+    ELSE.
+      RETURN NEW zcl_brx_duration( abs( gv_seconds ) ).
+    ENDIF.
   ENDMETHOD.
 
 ENDCLASS.
