@@ -17,7 +17,7 @@ CLASS zcl_brx_duration DEFINITION
     "! @parameter iv_value | <p class="shorttext synchronized" lang="en">Duration value</p>
     "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Duration unit</p>
     "! @parameter ro_duration | <p class="shorttext synchronized" lang="en">Instance of the duration</p>
-    "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Error creating duration</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Error creating duration</p>
     CLASS-METHODS create
       IMPORTING
         !iv_value          TYPE numeric OPTIONAL
@@ -26,7 +26,7 @@ CLASS zcl_brx_duration DEFINITION
       RETURNING
         VALUE(ro_duration) TYPE REF TO zif_brx_duration
       RAISING
-        zcx_brx_static_check.
+        zcx_brx_invalid_value.
 
 
     "! <p class="shorttext synchronized" lang="en">Get the duration representing initial</p>
@@ -108,7 +108,12 @@ CLASS zcl_brx_duration IMPLEMENTATION.
         WHEN zif_brx_const=>gc_unit-second.
           lv_seconds += iv_value.
         WHEN OTHERS.
-          RAISE EXCEPTION TYPE zcx_brx_static_check.
+          RAISE EXCEPTION TYPE zcx_brx_invalid_value
+            EXPORTING
+              textid    = zcx_brx_invalid_value=>invalid_parameter_value
+              value     = CONV #( iv_unit )
+              paramname = 'IV_UNIT'.
+
       ENDCASE.
     ENDIF.
 

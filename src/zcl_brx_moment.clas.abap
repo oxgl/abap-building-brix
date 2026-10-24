@@ -24,7 +24,7 @@ CLASS zcl_brx_moment DEFINITION
       RETURNING
         VALUE(ro_moment) TYPE REF TO zif_brx_moment
       RAISING
-        zcx_brx_static_check.
+        zcx_brx_invalid_value.
 
 
     "! <p class="shorttext synchronized" lang="en">Parses a string representation of a moment</p>
@@ -40,7 +40,7 @@ CLASS zcl_brx_moment DEFINITION
     "! @parameter iv_string | <p class="shorttext synchronized" lang="en">String representation of a moment</p>
     "! @parameter ro_moment | <p class="shorttext synchronized" lang="en">Reference to moment</p>
     "! @raising zcx_brx_conversion_failed | <p class="shorttext synchronized" lang="en">Conversion failed due to invalid format or value</p>
-    "! @raising zcx_brx_out_of_range | <p class="shorttext synchronized" lang="en">Conversion failed due to value being out of range</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Invalid value encountered during parsing</p>
     CLASS-METHODS parse
       IMPORTING
         iv_string        TYPE clike
@@ -48,7 +48,7 @@ CLASS zcl_brx_moment DEFINITION
         VALUE(ro_moment) TYPE REF TO zif_brx_moment
       RAISING
         zcx_brx_conversion_failed
-        zcx_brx_out_of_range.
+        zcx_brx_invalid_value.
 
 
     "! <p class="shorttext synchronized" lang="en">Returns a reference to current moment</p>
@@ -146,14 +146,14 @@ CLASS zcl_brx_moment DEFINITION
     "!
     "! @parameter iv_date | <p class="shorttext synchronized" lang="en">Date string to be validated</p>
     "! @parameter rv_date | <p class="shorttext synchronized" lang="en">Validated date as type d</p>
-    "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised in case of invalid date</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised in case of invalid date</p>
     METHODS to_valid_date
       IMPORTING
         !iv_date       TYPE clike
       RETURNING
         VALUE(rv_date) TYPE d
       RAISING
-        zcx_brx_static_check.
+        zcx_brx_invalid_value.
 
 
 
@@ -163,7 +163,7 @@ CLASS zcl_brx_moment DEFINITION
     "! @parameter iv_value | <p class="shorttext synchronized" lang="en">Value to be added</p>
     "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of the value to be added</p>
     "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone for the operation</p>
-    "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised in case of error</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised in case of error</p>
     METHODS tstmp_add
       IMPORTING
         !iv_timestamp       TYPE timestampl
@@ -173,7 +173,7 @@ CLASS zcl_brx_moment DEFINITION
       RETURNING
         VALUE(rv_timestamp) TYPE timestampl
       RAISING
-        zcx_brx_static_check.
+        zcx_brx_invalid_value.
 
 
 
@@ -183,7 +183,7 @@ CLASS zcl_brx_moment DEFINITION
     "! @parameter iv_value | <p class="shorttext synchronized" lang="en">Value to be subtracted</p>
     "! @parameter iv_unit | <p class="shorttext synchronized" lang="en">Unit of the value to be subtracted</p>
     "! @parameter iv_timezone | <p class="shorttext synchronized" lang="en">Time zone for the operation</p>
-    "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised in case of error</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised in case of error</p>
     METHODS tstmp_subtract
       IMPORTING
         !iv_timestamp       TYPE timestampl
@@ -193,7 +193,7 @@ CLASS zcl_brx_moment DEFINITION
       RETURNING
         VALUE(rv_timestamp) TYPE timestampl
       RAISING
-        zcx_brx_static_check.
+        zcx_brx_invalid_value.
 
 
 
@@ -388,8 +388,11 @@ CLASS zcl_brx_moment IMPLEMENTATION.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) + gc_timestamp-end_of_second ).
 
       WHEN OTHERS.
-        RAISE EXCEPTION TYPE zcx_brx_static_check.
-
+        RAISE EXCEPTION TYPE zcx_brx_invalid_value
+          EXPORTING
+            textid    = zcx_brx_invalid_value=>invalid_parameter_value
+            value     = CONV #( iv_unit )
+            paramname = 'IV_UNIT'.
     ENDCASE.
   ENDMETHOD.
 
@@ -441,7 +444,11 @@ CLASS zcl_brx_moment IMPLEMENTATION.
         RETURN NEW zcl_brx_moment( floor( lv_timestamp ) ).
 
       WHEN OTHERS.
-        RAISE EXCEPTION TYPE zcx_brx_static_check.
+        RAISE EXCEPTION TYPE zcx_brx_invalid_value
+          EXPORTING
+            textid    = zcx_brx_invalid_value=>invalid_parameter_value
+            value     = CONV #( iv_unit )
+            paramname = 'IV_UNIT'.
 
     ENDCASE.
   ENDMETHOD.
@@ -610,7 +617,6 @@ CLASS zcl_brx_moment IMPLEMENTATION.
             EXIT.
           ENDIF.
 
-
         CATCH cx_parameter_invalid_range.
       ENDTRY.
 
@@ -619,7 +625,10 @@ CLASS zcl_brx_moment IMPLEMENTATION.
         ls_date-day -= 1.
         rv_date = ls_date.
       ELSE.
-        RAISE EXCEPTION TYPE zcx_brx_static_check.
+        RAISE EXCEPTION TYPE zcx_brx_invalid_value
+          EXPORTING
+            textid = zcx_brx_invalid_value=>value_out_of_range
+            value  = CONV #( rv_date ).
       ENDIF.
     ENDDO.
 
@@ -708,13 +717,19 @@ CLASS zcl_brx_moment IMPLEMENTATION.
             RETURN floor( rv_timestamp ) + frac( iv_timestamp ).
 
           WHEN OTHERS.
-            RAISE EXCEPTION TYPE zcx_brx_static_check.
+            RAISE EXCEPTION TYPE zcx_brx_invalid_value
+              EXPORTING
+                textid    = zcx_brx_invalid_value=>invalid_parameter_value
+                value     = CONV #( iv_unit )
+                paramname = 'IV_UNIT'.
         ENDCASE.
 
       CATCH cx_parameter_invalid cx_sy_arithmetic_overflow INTO DATA(lo_calculation_error).
 
-        RAISE EXCEPTION TYPE zcx_brx_static_check
+        RAISE EXCEPTION TYPE zcx_brx_invalid_value
           EXPORTING
+            textid   = zcx_brx_invalid_value=>value_out_of_range
+            value    = CONV #( iv_value )
             previous = lo_calculation_error.
     ENDTRY.
 

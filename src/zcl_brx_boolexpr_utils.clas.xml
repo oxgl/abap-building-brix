@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_BRX_BOOLEXPR_UTILS</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Boolean expression utils</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_TABLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluates a boolean expression against a table of values.</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_VALUE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluates a boolean expression against a single value.</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_TABLE</CMPNAME>
+     <SCONAME>IT_VALUES</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table of values to evaluate against the boolean expression.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_TABLE</CMPNAME>
+     <SCONAME>IV_CASE_INSENSITIVE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation should be case insensitive.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_TABLE</CMPNAME>
+     <SCONAME>IV_EXPRESSION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Boolean expression to evaluate.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_TABLE</CMPNAME>
+     <SCONAME>RV_RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Result of the evaluation.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_TABLE</CMPNAME>
+     <SCONAME>ZCX_BRX_EVALUATION_FAILED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation failed.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_VALUE</CMPNAME>
+     <SCONAME>IV_CASE_INSENSITIVE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation should be case insensitive.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_VALUE</CMPNAME>
+     <SCONAME>IV_EXPRESSION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Boolean expression to evaluate.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_VALUE</CMPNAME>
+     <SCONAME>IV_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Value to evaluate against the boolean expression.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_VALUE</CMPNAME>
+     <SCONAME>RV_RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Result of the evaluation.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE_BOOLEXPR_VALUE</CMPNAME>
+     <SCONAME>ZCX_BRX_EVALUATION_FAILED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluation failed.</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

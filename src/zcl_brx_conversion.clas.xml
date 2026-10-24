@@ -95,6 +95,12 @@
      <DESCRIPT>Raised when the conversion fails</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE</CMPNAME>
+     <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised when the input date is invalid</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
      <CMPNAME>PARSE_TIME</CMPNAME>
      <SCONAME>EV_FORMAT</SCONAME>
      <LANGU>E</LANGU>
@@ -132,9 +138,9 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIME</CMPNAME>
-     <SCONAME>ZCX_BRX_OUT_OF_RANGE</SCONAME>
+     <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Raised when the input time is out of range</DESCRIPT>
+     <DESCRIPT>Raised when the input date is invalid</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
@@ -174,9 +180,9 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
-     <SCONAME>ZCX_BRX_OUT_OF_RANGE</SCONAME>
+     <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Raised when the input timestamp is out of range</DESCRIPT>
+     <DESCRIPT>Raised when the input date is invalid</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

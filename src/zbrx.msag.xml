@@ -7,6 +7,122 @@
     <MASTERLANG>E</MASTERLANG>
     <STEXT>ABAP Building Brix: Messages</STEXT>
    </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>&amp;1&amp;2&amp;3&amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Error occurred.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Internal error.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>Internal error in class &amp;1 method &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>020</MSGNR>
+     <TEXT>Invalid value.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>021</MSGNR>
+     <TEXT>Invalid value &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>022</MSGNR>
+     <TEXT>Invalid value &amp;1 for data type &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>023</MSGNR>
+     <TEXT>Invalid parameter value &amp;1 of parameter &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>025</MSGNR>
+     <TEXT>Value &amp;1 is out of range.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>026</MSGNR>
+     <TEXT>Value &amp;1 is out of range for data type &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>027</MSGNR>
+     <TEXT>Value &amp;1 is out of range for parameter &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>040</MSGNR>
+     <TEXT>Conversion failed.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>041</MSGNR>
+     <TEXT>Conversion of value &amp;1 failed.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>042</MSGNR>
+     <TEXT>Conversion of value &amp;1 to type &amp;2 failed.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>060</MSGNR>
+     <TEXT>Evaluation error.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>061</MSGNR>
+     <TEXT>Empty expression.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>062</MSGNR>
+     <TEXT>Invalid expression &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>063</MSGNR>
+     <TEXT>Invalid token &amp;1 at position &amp;2.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZBRX</ARBGB>
+     <MSGNR>064</MSGNR>
+     <TEXT>Invalid parenthesis.</TEXT>
+    </T100>
+   </T100>
   </asx:values>
  </asx:abap>
 </abapGit>

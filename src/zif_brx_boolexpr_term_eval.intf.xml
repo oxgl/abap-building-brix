@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_INTF" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOINTERF>
+    <CLSNAME>ZIF_BRX_BOOLEXPR_TERM_EVAL</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>ABAP Building Brix: Boolean expression parser term evaluator</DESCRIPT>
+    <EXPOSURE>2</EXPOSURE>
+    <STATE>1</STATE>
+    <UNICODE>X</UNICODE>
+   </VSEOINTERF>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>EVALUATE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Evaluates a single term of a boolean expression.</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE</CMPNAME>
+     <SCONAME>IV_TERM</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The term to evaluate.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE</CMPNAME>
+     <SCONAME>RV_RESULT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The result of the evaluation.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>EVALUATE</CMPNAME>
+     <SCONAME>ZCX_BRX_EVALUATION_FAILED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised if the evaluation of the term fails.</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -24,6 +24,7 @@ CLASS zcl_brx_conversion DEFINITION
     "! @parameter ev_format | <p class="shorttext synchronized" lang="en">The found format of the input date string</p>
     "! @parameter rv_output | <p class="shorttext synchronized" lang="en">The internal date representation after conversion</p>
     "! @raising zcx_brx_conversion_failed | <p class="shorttext synchronized" lang="en">Raised when the conversion fails</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Raised when the input date is invalid</p>
     CLASS-METHODS parse_date
       IMPORTING
         iv_input              TYPE clike
@@ -35,7 +36,7 @@ CLASS zcl_brx_conversion DEFINITION
         VALUE(rv_output)      TYPE d
       RAISING
         zcx_brx_conversion_failed
-        zcx_brx_out_of_range.
+        zcx_brx_invalid_value.
 
 
     "! <p class="shorttext synchronized" lang="en">Converts a timestamp string to an internal timestamp</p>
@@ -58,7 +59,7 @@ CLASS zcl_brx_conversion DEFINITION
     "! @parameter ev_format | <p class="shorttext synchronized" lang="en">The found format of the input timestamp string</p>
     "! @parameter rv_output | <p class="shorttext synchronized" lang="en">The internal timestamp representation after conversion</p>
     "! @raising zcx_brx_conversion_failed | <p class="shorttext synchronized" lang="en">Raised when the conversion fails</p>
-    "! @raising zcx_brx_out_of_range | <p class="shorttext synchronized" lang="en">Raised when the input timestamp is out of range</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Raised when the input date is invalid</p>
     CLASS-METHODS parse_timestamp
       IMPORTING
         iv_input              TYPE clike
@@ -70,7 +71,7 @@ CLASS zcl_brx_conversion DEFINITION
         VALUE(rv_output)      TYPE zif_brx_type=>tv_timestamp_long
       RAISING
         zcx_brx_conversion_failed
-        zcx_brx_out_of_range.
+        zcx_brx_invalid_value.
 
 
     "! <p class="shorttext synchronized" lang="en">Converts a time string to an internal time representation</p>
@@ -89,7 +90,7 @@ CLASS zcl_brx_conversion DEFINITION
     "! @parameter ev_format | <p class="shorttext synchronized" lang="en">The found format of the input time string</p>
     "! @parameter rv_output | <p class="shorttext synchronized" lang="en">The internal time representation after conversion</p>
     "! @raising zcx_brx_conversion_failed | <p class="shorttext synchronized" lang="en">Raised when the conversion fails</p>
-    "! @raising zcx_brx_out_of_range | <p class="shorttext synchronized" lang="en">Raised when the input time is out of range</p>
+    "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Raised when the input date is invalid</p>
     CLASS-METHODS parse_time
       IMPORTING
         iv_input              TYPE clike
@@ -101,7 +102,7 @@ CLASS zcl_brx_conversion DEFINITION
         VALUE(rv_output)      TYPE t
       RAISING
         zcx_brx_conversion_failed
-        zcx_brx_out_of_range.
+        zcx_brx_invalid_value.
 
 
   PROTECTED SECTION.
@@ -235,7 +236,11 @@ CLASS zcl_brx_conversion IMPLEMENTATION.
     ENDTRY.
 
     IF ev_format EQ zif_brx_const=>gc_date_format-unknown.
-      RAISE EXCEPTION TYPE zcx_brx_conversion_failed.
+      RAISE EXCEPTION TYPE zcx_brx_conversion_failed
+        EXPORTING
+          textid   = zcx_brx_conversion_failed=>conversion_to_datatype_failed
+          value    = iv_input
+          datatype = 'DATE'.
     ENDIF.
 
     IF iv_plausibility_check EQ abap_true AND rv_output IS NOT INITIAL.
@@ -245,8 +250,11 @@ CLASS zcl_brx_conversion IMPLEMENTATION.
             syst_time = '000000'
           ).
         CATCH cx_parameter_invalid_range INTO DATA(lo_invalid_range).
-          RAISE EXCEPTION TYPE zcx_brx_out_of_range
+          RAISE EXCEPTION TYPE zcx_brx_invalid_value
             EXPORTING
+              textid   = zcx_brx_invalid_value=>value_out_of_range
+              value    = iv_input
+              datatype = 'DATE'
               previous = lo_invalid_range.
       ENDTRY.
     ENDIF.
@@ -352,7 +360,11 @@ CLASS zcl_brx_conversion IMPLEMENTATION.
     ENDLOOP.
 
     IF ev_format EQ zif_brx_const=>gc_date_format-unknown.
-      RAISE EXCEPTION TYPE zcx_brx_conversion_failed.
+      RAISE EXCEPTION TYPE zcx_brx_conversion_failed
+        EXPORTING
+          textid   = zcx_brx_conversion_failed=>conversion_to_datatype_failed
+          value    = iv_input
+          datatype = 'TIMESTAMP'.
     ENDIF.
 
     IF iv_plausibility_check EQ abap_true AND rv_output IS NOT INITIAL.
@@ -361,8 +373,11 @@ CLASS zcl_brx_conversion IMPLEMENTATION.
             utc_tstmp = floor( rv_output )
           ).
         CATCH cx_parameter_invalid_range INTO DATA(lo_invalid_range).
-          RAISE EXCEPTION TYPE zcx_brx_out_of_range
+          RAISE EXCEPTION TYPE zcx_brx_invalid_value
             EXPORTING
+              textid   = zcx_brx_invalid_value=>value_out_of_range
+              value    = iv_input
+              datatype = 'DATE'
               previous = lo_invalid_range.
       ENDTRY.
     ENDIF.
@@ -454,7 +469,11 @@ CLASS zcl_brx_conversion IMPLEMENTATION.
     ENDTRY.
 
     IF ev_format EQ zif_brx_const=>gc_date_format-unknown.
-      RAISE EXCEPTION TYPE zcx_brx_conversion_failed.
+      RAISE EXCEPTION TYPE zcx_brx_conversion_failed
+        EXPORTING
+          textid   = zcx_brx_conversion_failed=>conversion_to_datatype_failed
+          value    = iv_input
+          datatype = 'TIME'.
     ENDIF.
 
     IF iv_plausibility_check EQ abap_true AND rv_output IS NOT INITIAL.
@@ -464,8 +483,11 @@ CLASS zcl_brx_conversion IMPLEMENTATION.
             syst_time = rv_output
           ).
         CATCH cx_parameter_invalid_range INTO DATA(lo_invalid_range).
-          RAISE EXCEPTION TYPE zcx_brx_out_of_range
+          RAISE EXCEPTION TYPE zcx_brx_invalid_value
             EXPORTING
+              textid   = zcx_brx_invalid_value=>value_out_of_range
+              value    = iv_input
+              datatype = 'DATE'
               previous = lo_invalid_range.
       ENDTRY.
     ENDIF.

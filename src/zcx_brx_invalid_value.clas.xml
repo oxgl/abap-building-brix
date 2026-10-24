@@ -3,9 +3,9 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCX_BRX_OUT_OF_RANGE</CLSNAME>
+    <CLSNAME>ZCX_BRX_INVALID_VALUE</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>ABAP Building Brix: Exception class for out of range errors</DESCRIPT>
+    <DESCRIPT>ABAP Building Brix: Exception class for invalid values</DESCRIPT>
     <CATEGORY>40</CATEGORY>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>

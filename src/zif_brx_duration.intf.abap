@@ -20,7 +20,7 @@ INTERFACE zif_brx_duration
   "! @parameter iv_hours | <p class="shorttext synchronized" lang="en">Hours to add</p>
   "! @parameter iv_days | <p class="shorttext synchronized" lang="en">Days to add</p>
   "! @parameter ro_duration | <p class="shorttext synchronized" lang="en">Resulting duration</p>
-  "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised if the addition fails</p>
+  "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the addition fails</p>
   METHODS add
     IMPORTING
       !io_duration       TYPE REF TO zif_brx_duration OPTIONAL
@@ -32,7 +32,7 @@ INTERFACE zif_brx_duration
     RETURNING
       VALUE(ro_duration) TYPE REF TO zif_brx_duration
     RAISING
-      zcx_brx_static_check.
+      zcx_brx_invalid_value.
 
   "! <p class="shorttext synchronized" lang="en">Subtracts a given amount of time from the duration</p>
   "!
@@ -42,7 +42,7 @@ INTERFACE zif_brx_duration
   "! @parameter iv_hours | <p class="shorttext synchronized" lang="en">Hours to subtract</p>
   "! @parameter iv_days | <p class="shorttext synchronized" lang="en">Days to subtract</p>
   "! @parameter ro_duration | <p class="shorttext synchronized" lang="en">Resulting duration</p>
-  "! @raising zcx_brx_static_check | <p class="shorttext synchronized" lang="en">Exception raised if the addition fails</p>
+  "! @raising zcx_brx_invalid_value | <p class="shorttext synchronized" lang="en">Exception raised if the addition fails</p>
   METHODS subtract
     IMPORTING
       !io_duration       TYPE REF TO zif_brx_duration OPTIONAL
@@ -54,7 +54,7 @@ INTERFACE zif_brx_duration
     RETURNING
       VALUE(ro_duration) TYPE REF TO zif_brx_duration
     RAISING
-      zcx_brx_static_check.
+      zcx_brx_invalid_value.
 
 
   "! <p class="shorttext synchronized" lang="en">Checks if the duration is zero</p>
