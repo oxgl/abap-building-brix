@@ -137,10 +137,10 @@ TRY.
 
     DO 12 TIMES.
       " Example output, e.g. interval bounds per month
-      WRITE: / lo_month->to_string( ), ' - ', lo_month->end( )->to_string( ).
+      WRITE: / lo_month->start( )->as_string( ), ' - ', lo_month->end( )->as_string( ).
 
       " Next interval: one second after the end of the current one
-      lo_month = lo_month->end( )->add( iv_seconds = 1 )->current( zif_brx_const=>gc_time_unit-month ).
+      lo_month = lo_month->end( )->next( zif_brx_const=>gc_time_unit-month ).
     ENDDO.
   CATCH zcx_brx_invalid_value INTO DATA(lo_invalid_error).
     " handle invalid value
