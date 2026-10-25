@@ -109,6 +109,48 @@ TRY.
 ENDTRY.
 ```
 
+### Conversion class example (`ZCL_BRX_CONVERSION`)
+
+```abap
+TRY.
+    " Parse external date text into DATS
+    DATA(lv_date) = zcl_brx_conversion=>to_date( iv_input = `2026-10-25` ).
+
+    " Parse external time text into TIMS
+    DATA(lv_time) = zcl_brx_conversion=>to_time( iv_input = `14:30:00` ).
+
+    " Parse timestamp text into timestamp type
+    DATA(lv_tstmp) = zcl_brx_conversion=>to_timestamp( iv_input = `2026-10-25T14:30:00` ).
+  CATCH zcx_brx_conversion_failed INTO DATA(lx_conv).
+    " handle conversion error
+ENDTRY.
+```
+
+### Moment interval example – iterate one year month-by-month
+
+```abap
+TRY.
+    DATA(lo_start_of_year) = zcl_brx_moment=>create_from_date( iv_date = '20260101' ).
+
+    DO 12 TIMES.
+      DATA(lo_month_start) = lo_start_of_year->add(
+        io_duration = zcl_brx_duration=>create(
+          iv_value = sy-index - 1
+          iv_unit  = zif_brx_const=>gc_time_unit-month ) )->current(
+            iv_unit = zif_brx_const=>gc_time_unit-month ).
+
+      DATA(lo_month_end) = lo_month_start->end( ).
+
+      " Example output, e.g. interval bounds per month
+      WRITE: / lo_month_start->to_string( ), ' - ', lo_month_end->to_string( ).
+    ENDDO.
+  CATCH zcx_brx_invalid_value INTO DATA(lx_invalid).
+    " handle invalid value
+  CATCH zcx_brx_conversion_failed INTO DATA(lx_parse).
+    " handle conversion/parsing issues
+ENDTRY.
+```
+
 ---
 
 ## Design in Short
