@@ -30,7 +30,7 @@ The goal of the library is to help you solve common tasks faster and with cleane
 Recent updates especially strengthened the following areas:
 
 - **Unified time model** (`Moment` + `Duration`) with immutable behavior.
-- **Extended period-boundary operations** (`start_of`, `end_of`, `start_of_next`, `end_of_previous`) for day-to-day business logic.
+- **Interval operations around a moment** (`current`, `next`, `previous`) for day-to-day business logic.
 - **Clear separation** between exact elapsed time (second-based) and calendar units (month/year).
 - **Flexible parsing layer** for date, time, and timestamp with multiple input formats.
 - **Expanded boolean expression parser/utils** for configuration and authorization-like use cases.
@@ -83,20 +83,30 @@ Recent updates especially strengthened the following areas:
 ## Mini Example – Simple to Use
 
 ```abap
-DATA(lo_now) = zcl_brx_moment=>now( ).
-DATA(lo_end_of_day) = lo_now->end_of( zif_brx_const=>gc_unit-day ).
+TRY.
+    DATA(lo_now) = zcl_brx_moment=>now( ).
 
-DATA(lo_15m) = zcl_brx_duration=>create(
-  iv_value = 15
-  iv_unit  = zif_brx_const=>gc_unit-minute ).
+    DATA(lo_today) = lo_now->current( iv_unit = zif_brx_const=>gc_time_unit-day ).
+    DATA(lo_end_of_day) = lo_today->end( ).
 
-DATA(lo_deadline) = lo_now->add( io_duration = lo_15m ).
+    DATA(lo_15m) = zcl_brx_duration=>create(
+      iv_value = 15
+      iv_unit  = zif_brx_const=>gc_time_unit-minute ).
+
+    DATA(lo_deadline) = lo_now->add( io_duration = lo_15m ).
+  CATCH zcx_brx_invalid_value INTO DATA(lx).
+    " handle error
+ENDTRY.
 ```
 
 ```abap
-DATA(lv_ok) = zcl_brx_boolexpr_utils=>evaluate_boolexpr_table(
-  iv_expression = `ADMIN & !GUEST`
-  it_values     = VALUE string_table( ( `ADMIN` ) ( `AUDITOR` ) ) ).
+TRY.
+    DATA(lv_ok) = zcl_brx_boolexpr_utils=>evaluate_boolexpr_table(
+      iv_expression = `ADMIN & !GUEST`
+      it_values     = VALUE string_table( ( `ADMIN` ) ( `AUDITOR` ) ) ).
+  CATCH zcx_brx_evaluation_failed INTO DATA(lx_eval).
+    " handle error
+ENDTRY.
 ```
 
 ---
@@ -112,4 +122,4 @@ DATA(lv_ok) = zcl_brx_boolexpr_utils=>evaluate_boolexpr_table(
 
 ## Contributors / Next Steps
 
-The library is actively evolving. If you build ABAP utility components, it is worth following upcoming updates and patterns—the goal is a progressively richer, easy-to-integrate building-block ecosystem.
+The library is actively evolving. If you build ABAP utility components, it is worth following upcoming updates and patterns—the goal is a progressively richer, easy-to-integrate building-block toolkit.
