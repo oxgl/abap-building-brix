@@ -6,81 +6,81 @@
 [![Code Statistics](https://img.shields.io/badge/Code%20Statistics-abaplint-blue)](https://abaplint.app/stats/oxgl/abap-building-brix)
 [![License](https://img.shields.io/github/license/oxgl/abap-building-brix)](https://github.com/oxgl/abap-building-brix/blob/main/LICENSE)
 
-ABAP Building Brix egy modern, ABAP Cloud-ready segédkönyvtár, amely kis, újrahasznosítható építőelemeket ad a mindennapi fejlesztéshez.
+ABAP Building Brix is a modern, ABAP Cloud-ready utility library that provides small, reusable building blocks for everyday ABAP development.
 
-> **Status: under heavy development.** A csomag folyamatosan bővül, rendszeresen érkeznek új osztályok, interfészek és fejlesztések.
-
----
-
-## Rövid áttekintés
-
-A könyvtár célja, hogy gyorsabban és tisztábban tudj tipikus feladatokat megoldani, például:
-
-- időpontok és időtartamok kezelése immutábilis objektumokkal,
-- dátum/idő/timestamp konverziók és parsing egységes API-val,
-- szöveges logikai kifejezések (`AND/OR/NOT`) biztonságos kiértékelése,
-- közös konstansok, típusok és kivételek használata konzisztens kódhoz.
-
-**Fejlesztői előny:** kevesebb ismétlődő boilerplate kód, tisztább domain-logika, jobban karbantartható implementáció.
+> **Status: under heavy development.** The package is continuously evolving, with frequent additions of new classes, interfaces, and improvements.
 
 ---
 
-## Legújabb fókuszterületek és bővítések
+## Quick Overview
 
-Az utóbbi frissítésekben a könyvtár különösen az alábbi területeken erősödött:
+The goal of the library is to help you solve common tasks faster and with cleaner code, for example:
 
-- **Időkezelési modell egységesítése** (`Moment` + `Duration`) immutábilis működéssel.
-- **Fejlettebb időhatár műveletek** (`start_of`, `end_of`, `start_of_next`, `end_of_previous`) napi üzleti logikához.
-- **Pontos különválasztás** az egzakt időtartam (másodperc alapú) és a naptári egységek (hónap/év) között.
-- **Rugalmas parsing réteg** dátumra, időre és timestampre több input formátummal.
-- **Boolean expression parser/utils** modul bővítése konfigurációs és jogosultsági jellegű use-case-ekre.
-- **Erősebb kivételkezelési struktúra** (`ZCX_BRX_*`) egyértelmű hibajelzésekkel.
+- handling moments and durations with immutable objects,
+- parsing and converting date/time/timestamp values through a unified API,
+- safely evaluating textual boolean expressions (`AND/OR/NOT`),
+- using shared constants, types, and exceptions for consistent implementation.
+
+**Developer benefit:** less repetitive boilerplate, clearer domain logic, and easier maintenance.
 
 ---
 
-## Újabb és kiemelt objektumok
+## Latest Focus Areas and Improvements
 
-### Időkezelés
+Recent updates especially strengthened the following areas:
 
-| Objektum | Típus | Rövid cél |
+- **Unified time model** (`Moment` + `Duration`) with immutable behavior.
+- **Extended period-boundary operations** (`start_of`, `end_of`, `start_of_next`, `end_of_previous`) for day-to-day business logic.
+- **Clear separation** between exact elapsed time (second-based) and calendar units (month/year).
+- **Flexible parsing layer** for date, time, and timestamp with multiple input formats.
+- **Expanded boolean expression parser/utils** for configuration and authorization-like use cases.
+- **Stronger exception structure** (`ZCX_BRX_*`) with explicit and predictable error signaling.
+
+---
+
+## Newer and Highlighted Objects
+
+### Time Handling
+
+| Object | Kind | Purpose |
 |---|---|---|
-| `ZIF_BRX_MOMENT` | Interfész | Időpillanat API |
-| `ZCL_BRX_MOMENT` | Osztály | `Moment` implementáció + factory metódusok |
-| `ZIF_BRX_DURATION` | Interfész | Időtartam API |
-| `ZCL_BRX_DURATION` | Osztály | `Duration` implementáció + factory metódusok |
-| `ZCL_BRX_CONVERSION` | Osztály | Dátum/idő/timestamp parsing és konverzió |
+| `ZIF_BRX_MOMENT` | Interface | Moment-in-time API |
+| `ZCL_BRX_MOMENT` | Class | `Moment` implementation + factory methods |
+| `ZIF_BRX_DURATION` | Interface | Duration API |
+| `ZCL_BRX_DURATION` | Class | `Duration` implementation + factory methods |
+| `ZCL_BRX_CONVERSION` | Class | Date/time/timestamp parsing and conversion helpers |
 
-### Logikai kifejezések
+### Boolean Expressions
 
-| Objektum | Típus | Rövid cél |
+| Object | Kind | Purpose |
 |---|---|---|
-| `ZCL_BRX_BOOLEXPR_UTILS` | Osztály | Egyszerű, kész belépési pont értékeléshez |
-| `ZIF_BRX_BOOLEXPR_PARSER` | Interfész | Parser API |
-| `ZCL_BRX_BOOLEXPR_PARSER` | Osztály | Rekurzív parser implementáció |
-| `ZIF_BRX_BOOLEXPR_TERM_EVAL` | Interfész | Saját term-kiértékelési stratégia |
+| `ZCL_BRX_BOOLEXPR_UTILS` | Class | Ready-to-use entry points for expression evaluation |
+| `ZIF_BRX_BOOLEXPR_PARSER` | Interface | Parser API |
+| `ZCL_BRX_BOOLEXPR_PARSER` | Class | Recursive parser implementation |
+| `ZIF_BRX_BOOLEXPR_TERM_EVAL` | Interface | Strategy interface for custom term evaluation |
 
-### Közös alapok
+### Shared Foundations
 
-| Objektum | Típus | Rövid cél |
+| Object | Kind | Purpose |
 |---|---|---|
-| `ZIF_BRX_CONST` | Interfész | Egységek, formátumok, weekday konstansok |
-| `ZIF_BRX_TYPE` | Interfész | Megosztott típusdefiníciók |
-| `ZCX_BRX_INVALID_VALUE` | Kivételosztály | Érvénytelen / tartományon kívüli érték |
-| `ZCX_BRX_CONVERSION_FAILED` | Kivételosztály | Sikertelen konverzió |
-| `ZCX_BRX_EVALUATION_FAILED` | Kivételosztály | Sikertelen logikai kiértékelés |
+| `ZIF_BRX_CONST` | Interface | Units, formats, weekday constants |
+| `ZIF_BRX_TYPE` | Interface | Shared type definitions |
+| `ZCX_BRX_INVALID_VALUE` | Exception class | Invalid / out-of-range values |
+| `ZCX_BRX_CONVERSION_FAILED` | Exception class | Conversion failures |
+| `ZCX_BRX_EVALUATION_FAILED` | Exception class | Boolean evaluation failures |
 
 ---
 
-## Miért hasznos fejlesztőként?
+## Why It Is Useful for Developers
 
-- **Gyors indulás:** kevés sorból használható, jól szegmentált API.
-- **Biztonságos működés:** immutábilis objektumok, kevesebb mellékhatás.
-- **Konzisztencia:** közös konstansok/típusok/kivételek a projekt egészében.
-- **ABAP Cloud kompatibilitás:** modern irány, jövőállóbb kódbázis.
+- **Fast to start:** practical API, usable in just a few lines.
+- **Safer behavior:** immutable objects with fewer side effects.
+- **Consistency:** shared constants/types/exceptions across your codebase.
+- **ABAP Cloud compatibility:** modern direction, future-friendly foundation.
 
 ---
 
-## Mini példa – mennyire egyszerű használni
+## Mini Example – Simple to Use
 
 ```abap
 DATA(lo_now) = zcl_brx_moment=>now( ).
@@ -101,15 +101,15 @@ DATA(lv_ok) = zcl_brx_boolexpr_utils=>evaluate_boolexpr_table(
 
 ---
 
-## Design röviden
+## Design in Short
 
-- **Interface-first megközelítés** (`ZIF_*`)
+- **Interface-first approach** (`ZIF_*`)
 - **Immutability by default**
-- **Típusos, explicit hibakezelés** (`ZCX_BRX_*`)
-- **„No magic literals”**: központi konstansok használata
+- **Explicit, typed error handling** (`ZCX_BRX_*`)
+- **No magic literals:** rely on central constants
 
 ---
 
-## Contributors / következő lépések
+## Contributors / Next Steps
 
-A könyvtár aktívan fejlődik. Ha ABAP utility komponenseket építesz, érdemes követni a frissítéseket és a mintákat, mert a cél egy egyre teljesebb, könnyen beépíthető „building blocks” ökoszisztéma.
+The library is actively evolving. If you build ABAP utility components, it is worth following upcoming updates and patterns—the goal is a progressively richer, easy-to-integrate building-block ecosystem.
