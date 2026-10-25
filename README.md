@@ -94,7 +94,7 @@ TRY.
       iv_unit  = zif_brx_const=>gc_time_unit-minute ).
 
     DATA(lo_deadline) = lo_now->add( io_duration = lo_15m ).
-  CATCH zcx_brx_invalid_value INTO DATA(lx).
+  CATCH zcx_brx_invalid_value INTO DATA(lo_error).
     " handle error
 ENDTRY.
 ```
@@ -104,7 +104,7 @@ TRY.
     DATA(lv_ok) = zcl_brx_boolexpr_utils=>evaluate_boolexpr_table(
       iv_expression = `ADMIN & !GUEST`
       it_values     = VALUE string_table( ( `ADMIN` ) ( `AUDITOR` ) ) ).
-  CATCH zcx_brx_evaluation_failed INTO DATA(lx_eval).
+  CATCH zcx_brx_evaluation_failed INTO DATA(lo_eval_error).
     " handle error
 ENDTRY.
 ```
@@ -121,7 +121,7 @@ TRY.
 
     " Parse timestamp text into timestamp type
     DATA(lv_tstmp) = zcl_brx_conversion=>to_timestamp( iv_input = `2026-10-25T14:30:00` ).
-  CATCH zcx_brx_conversion_failed INTO DATA(lx_conv).
+  CATCH zcx_brx_conversion_failed INTO DATA(lo_conv_error).
     " handle conversion error
 ENDTRY.
 ```
@@ -132,21 +132,19 @@ ENDTRY.
 TRY.
     DATA(lo_start_of_year) = zcl_brx_moment=>create_from_date( iv_date = '20260101' ).
 
+    " First interval: the month containing the start moment
+    DATA(lo_month) = lo_start_of_year->current( zif_brx_const=>gc_time_unit-month ).
+
     DO 12 TIMES.
-      DATA(lo_month_start) = lo_start_of_year->add(
-        io_duration = zcl_brx_duration=>create(
-          iv_value = sy-index - 1
-          iv_unit  = zif_brx_const=>gc_time_unit-month ) )->current(
-            iv_unit = zif_brx_const=>gc_time_unit-month ).
-
-      DATA(lo_month_end) = lo_month_start->end( ).
-
       " Example output, e.g. interval bounds per month
-      WRITE: / lo_month_start->to_string( ), ' - ', lo_month_end->to_string( ).
+      WRITE: / lo_month->to_string( ), ' - ', lo_month->end( )->to_string( ).
+
+      " Next interval: one second after the end of the current one
+      lo_month = lo_month->end( )->add( iv_seconds = 1 )->current( zif_brx_const=>gc_time_unit-month ).
     ENDDO.
-  CATCH zcx_brx_invalid_value INTO DATA(lx_invalid).
+  CATCH zcx_brx_invalid_value INTO DATA(lo_invalid_error).
     " handle invalid value
-  CATCH zcx_brx_conversion_failed INTO DATA(lx_parse).
+  CATCH zcx_brx_conversion_failed INTO DATA(lo_parse_error).
     " handle conversion/parsing issues
 ENDTRY.
 ```
