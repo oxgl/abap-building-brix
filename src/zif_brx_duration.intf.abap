@@ -1,16 +1,13 @@
 "! <p class="shorttext synchronized" lang="en">ABAP Building Brix: Duration</p>
 INTERFACE zif_brx_duration
   PUBLIC .
-  TYPES:
-    " <p class="shorttext synchronized" lang="en">Seconds</p>
-    tv_seconds TYPE tzntstmpl.
 
   "! <p class="shorttext synchronized" lang="en">Returns the duration in seconds</p>
   "!
   "! @parameter rv_seconds | <p class="shorttext synchronized" lang="en">Seconds</p>
   METHODS as_seconds
     RETURNING
-      VALUE(rv_seconds) TYPE tv_seconds.
+      VALUE(rv_seconds) TYPE zif_brx_type=>tv_seconds.
 
   "! <p class="shorttext synchronized" lang="en">Adds a given amount of time to the duration</p>
   "!

@@ -327,7 +327,7 @@ CLASS zcl_brx_conversion IMPLEMENTATION.
 
               ev_format = <fss_pattern_format>-format.
               EXIT.
-            CATCH cx_gdt_conversion.
+            CATCH cx_gdt_conversion ##NO_HANDLER.
           ENDTRY.
 
         WHEN zif_brx_const=>gc_timestamp_format-text.

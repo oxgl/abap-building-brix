@@ -69,7 +69,7 @@ CLASS zcl_brx_duration DEFINITION
 
     DATA:
       "! <p class="shorttext synchronized" lang="en">Duration in seconds</p>
-      gv_seconds TYPE zif_brx_duration=>tv_seconds.
+      gv_seconds TYPE zif_brx_type=>tv_seconds.
 
 
     CLASS-DATA:
@@ -96,7 +96,7 @@ CLASS zcl_brx_duration IMPLEMENTATION.
 
 
   METHOD create.
-    DATA(lv_seconds) = VALUE zif_brx_duration=>tv_seconds( ).
+    DATA(lv_seconds) = VALUE zif_brx_type=>tv_seconds( ).
     IF iv_value IS NOT INITIAL.
       CASE iv_unit.
         WHEN zif_brx_const=>gc_time_unit-day.

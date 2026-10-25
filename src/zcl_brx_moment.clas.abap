@@ -553,7 +553,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
             EXIT.
           ENDIF.
 
-        CATCH cx_parameter_invalid_range.
+        CATCH cx_parameter_invalid_range ##NO_HANDLER.
       ENDTRY.
 
       DATA(ls_date) = CONV ts_date_parts( rv_date ).

@@ -17,6 +17,11 @@
      <DESCRIPT>Type for date format</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>TV_SECONDS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type for the second count</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>TV_TIMESTAMP_FORMAT</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Type for timestamp format</DESCRIPT>

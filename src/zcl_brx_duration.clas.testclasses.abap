@@ -22,7 +22,7 @@ CLASS ltc_brx_duration DEFINITION FINAL
     METHODS assert_seconds
       IMPORTING
         io_duration TYPE REF TO zif_brx_duration
-        iv_expected TYPE zif_brx_duration=>tv_seconds
+        iv_expected TYPE zif_brx_type=>tv_seconds
         iv_msg      TYPE string.
 ENDCLASS.
 

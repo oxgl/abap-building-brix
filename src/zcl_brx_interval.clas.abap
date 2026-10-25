@@ -190,7 +190,7 @@ CLASS zcl_brx_interval IMPLEMENTATION.
   METHOD zif_brx_interval~duration.
     TRY.
         RETURN go_start->delta( go_end ).
-      CATCH zcx_brx_invalid_value.
+      CATCH zcx_brx_invalid_value ##NO_HANDLER.
         " Should never happen, as both go_start and go_end are
         " valid moments, but just in case, we return a zero duration
     ENDTRY.

@@ -56,11 +56,6 @@
      <LANGU>E</LANGU>
      <DESCRIPT>Subtracts a given amount of time from the duration</DESCRIPT>
     </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>TV_SECONDS</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Seconds</DESCRIPT>
-    </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
     <SEOSUBCOTX>

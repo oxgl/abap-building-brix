@@ -65,15 +65,13 @@ CLASS zcl_brx_boolexpr_parser DEFINITION
 
     "! <p class="shorttext synchronized" lang="en">Trim needless parentheses</p>
     "!
-    "! @parameter iv_expression | <p class="shorttext synchronized" lang="en">Expression</p>
-    "! @parameter ev_expression | <p class="shorttext synchronized" lang="en">Expression after trimming</p>
+    "! @parameter cv_expression | <p class="shorttext synchronized" lang="en">Expression after trimming</p>
     "! @parameter ev_found      | <p class="shorttext synchronized" lang="en">Unneded parentheses found</p>
     CLASS-METHODS trim_unneeded_parentheses
-      IMPORTING
-        !iv_expression       TYPE csequence
       EXPORTING
-        VALUE(ev_expression) TYPE string
-        !ev_found            TYPE abap_bool .
+        ev_found      TYPE abap_bool
+      CHANGING
+        cv_expression TYPE string.
 
 ENDCLASS.
 
@@ -112,10 +110,8 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
     " Trim unneeded parenthesys
     "************************************************************************
     trim_unneeded_parentheses(
-      EXPORTING
-        iv_expression = lv_expression
-      IMPORTING
-        ev_expression = lv_expression ).
+      CHANGING
+        cv_expression = lv_expression ).
 
 
 
@@ -127,16 +123,14 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
       DATA(lv_expression_wo_not) = lv_expression+1(*).
 
       trim_unneeded_parentheses(
-        EXPORTING
-          iv_expression = lv_expression_wo_not
         IMPORTING
-          ev_expression = DATA(lv_expression_trimmed)
-          ev_found      = DATA(lv_found) ).
+          ev_found      = DATA(lv_found)
+        CHANGING
+          cv_expression = lv_expression_wo_not
+      ).
 
       IF lv_found EQ abap_true.
-        rv_result = zif_brx_boolexpr_parser~evaluate( lv_expression_trimmed ).
-        rv_result = xsdbool( rv_result EQ abap_false ).
-        RETURN.
+        RETURN xsdbool( zif_brx_boolexpr_parser~evaluate( lv_expression_wo_not ) EQ abap_false ).
       ENDIF.
 
     ENDIF.
@@ -168,7 +162,7 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
           EXIT.
         ENDIF.
       ENDLOOP.
-      RETURN.
+      RETURN rv_result.
     ENDIF.
 
 
@@ -198,7 +192,7 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
           EXIT.
         ENDIF.
       ENDLOOP.
-      RETURN.
+      RETURN rv_result.
     ENDIF.
 
 
@@ -252,9 +246,9 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
 
       CASE lv_char.
         WHEN gc_char-par_open.
-          ADD 1 TO ev_depth.
+          ev_depth += 1.
         WHEN gc_char-par_close.
-          SUBTRACT 1 FROM ev_depth.
+          ev_depth -= 1.
           IF ev_depth LT 0.       " Invalid parentheses => closed without opening
             CLEAR et_parts.
             RETURN.
@@ -287,19 +281,17 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
     CLEAR:
       ev_found.
 
-    ev_expression = iv_expression.
-
     DO.
-      CONDENSE ev_expression.
+      CONDENSE cv_expression.
 
       " At least 2 chars needed
-      DATA(lv_length) = strlen( ev_expression ).
+      DATA(lv_length) = strlen( cv_expression ).
       IF lv_length LT 2.
         EXIT.
       ENDIF.
 
       " Format (...)
-      IF ev_expression NP |{ gc_char-par_open }*{ gc_char-par_close }|.
+      IF cv_expression NP |{ gc_char-par_open }*{ gc_char-par_close }|.
         EXIT.
       ENDIF.
 
@@ -307,13 +299,13 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
       DATA(lv_depth) = 0.
       DO lv_length TIMES.
         DATA(lv_offset) = sy-index - 1.
-        DATA(lv_curr) = ev_expression+lv_offset(1).
+        DATA(lv_curr) = cv_expression+lv_offset(1).
 
         CASE lv_curr.
           WHEN gc_char-par_open.
-            ADD 1 TO lv_depth.
+            lv_depth += 1.
           WHEN gc_char-par_close.
-            SUBTRACT 1 FROM lv_depth.
+            lv_depth -= 1.
           WHEN OTHERS.
         ENDCASE.
 
@@ -324,8 +316,9 @@ CLASS zcl_brx_boolexpr_parser IMPLEMENTATION.
 
       IF lv_offset EQ lv_length - 1.
         ev_found = abap_true.
-        SUBTRACT 2 FROM lv_length.
-        ev_expression = ev_expression+1(lv_length).
+        " Remove the first and last char
+        lv_length -= 2.
+        cv_expression = cv_expression+1(lv_length).
       ELSE.
         EXIT.
       ENDIF.
