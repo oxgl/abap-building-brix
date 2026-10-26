@@ -1,12 +1,11 @@
 # ABAP Building Brix
 
 [![CI](https://github.com/oxgl/abap-building-brix/actions/workflows/ci.yml/badge.svg)](https://github.com/oxgl/abap-building-brix/actions/workflows/ci.yml)
-[![ABAP Cloud](https://img.shields.io/badge/ABAP-Cloud%20Ready-green)](https://abaplint.app/stats/oxgl/abap-building-brix/object_classifications)
 [![ABAP Version](https://img.shields.io/badge/ABAP-7.58%2B-blue)](https://abaplint.app/stats/oxgl/abap-building-brix/statement_compatibility)
 [![Code Statistics](https://img.shields.io/badge/Code%20Statistics-abaplint-blue)](https://abaplint.app/stats/oxgl/abap-building-brix)
 [![License](https://img.shields.io/github/license/oxgl/abap-building-brix)](https://github.com/oxgl/abap-building-brix/blob/main/LICENSE)
 
-ABAP Building Brix is a modern, ABAP Cloud-ready utility library that provides small, reusable building blocks for everyday ABAP development.
+ABAP Building Brix is a modern utility library that provides small, reusable building blocks for everyday ABAP development.
 
 > **Status: under heavy development.** The package is continuously evolving, with frequent additions of new classes, interfaces, and improvements.
 
@@ -76,7 +75,6 @@ Recent updates especially strengthened the following areas:
 - **Fast to start:** practical API, usable in just a few lines.
 - **Safer behavior:** immutable objects with fewer side effects.
 - **Consistency:** shared constants/types/exceptions across your codebase.
-- **ABAP Cloud compatibility:** modern direction, future-friendly foundation.
 
 ---
 
