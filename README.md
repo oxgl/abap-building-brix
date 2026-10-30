@@ -1,6 +1,7 @@
 # ABAP Building Brix
 
 [![CI](https://github.com/oxgl/abap-building-brix/actions/workflows/ci.yml/badge.svg)](https://github.com/oxgl/abap-building-brix/actions/workflows/ci.yml)
+[![ABAP Cloud](https://img.shields.io/badge/ABAP-Cloud%20Ready-green)](https://abaplint.app/stats/oxgl/abap-building-brix/object_classifications)
 [![ABAP Version](https://img.shields.io/badge/ABAP-7.58%2B-blue)](https://abaplint.app/stats/oxgl/abap-building-brix/statement_compatibility)
 [![Code Statistics](https://img.shields.io/badge/Code%20Statistics-abaplint-blue)](https://abaplint.app/stats/oxgl/abap-building-brix)
 [![License](https://img.shields.io/github/license/oxgl/abap-building-brix)](https://github.com/oxgl/abap-building-brix/blob/main/LICENSE)
@@ -109,16 +110,31 @@ ENDTRY.
 
 ### Conversion class example (`ZCL_BRX_CONVERSION`)
 
+`ZCL_BRX_CONVERSION` provides four parsing entry points:
+
+- `parse_date` recognizes YMD, DMY, and MDY dates, auto-detects the format by default, and can optionally return the detected format. You can also select a format explicitly and enable or disable plausibility checks.
+- `parse_time` accepts colon-separated or compact times, optional fractional seconds, and UTC offsets (`Z`, `+/-HH:MM`, or `+/-HHMM`). It returns the parsed offset in seconds and fractional seconds in addition to the `TIMS` value.
+- `parse_date_time` parses raw timestamps (`yyyymmddhhmmss[.fraction]`) or text dates with an optional time, and returns the date, time, offset, and fraction separately.
+- `parse_timestamp` combines the parsed values into a long UTC timestamp and applies any supplied UTC offset. Parsing failures raise `ZCX_BRX_CONVERSION_FAILED`.
+
+The offset is a fixed UTC difference, not a time-zone identifier; it does not provide daylight-saving-time rules or validation.
+
 ```abap
 TRY.
     " Parse external date text into DATS
-    DATA(lv_date) = zcl_brx_conversion=>to_date( iv_input = `2026-10-25` ).
+    DATA(lv_date) = zcl_brx_conversion=>parse_date( iv_input = `2026-10-25` ).
 
-    " Parse external time text into TIMS
-    DATA(lv_time) = zcl_brx_conversion=>to_time( iv_input = `14:30:00` ).
+    " Parse time, including fractional seconds and a UTC offset
+    DATA(lv_time) = zcl_brx_conversion=>parse_time(
+      EXPORTING
+        iv_input    = `14:30:00.125+01:00`
+      IMPORTING
+        ev_offset   = DATA(lv_offset)
+        ev_fraction = DATA(lv_fraction) ).
 
     " Parse timestamp text into timestamp type
-    DATA(lv_tstmp) = zcl_brx_conversion=>to_timestamp( iv_input = `2026-10-25T14:30:00` ).
+    DATA(lv_tstmp) = zcl_brx_conversion=>parse_timestamp(
+      iv_input = `2026-10-25T14:30:00.125+01:00` ).
   CATCH zcx_brx_conversion_failed INTO DATA(lo_conv_error).
     " handle conversion error
 ENDTRY.
