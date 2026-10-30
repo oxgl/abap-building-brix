@@ -10,6 +10,7 @@ CLASS zcx_brx_static_check DEFINITION
     INTERFACES if_t100_dyn_msg .
 
     CONSTANTS:
+      "! <p class="shorttext synchronized" lang="en">Error occurred.</p>
       BEGIN OF zcx_brx_static_check,
         msgid TYPE symsgid VALUE 'ZBRX',
         msgno TYPE symsgno VALUE '010',
@@ -19,6 +20,7 @@ CLASS zcx_brx_static_check DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF zcx_brx_static_check .
     CONSTANTS:
+      "! <p class="shorttext synchronized" lang="en">Internal error.</p>
       BEGIN OF internal_error,
         msgid TYPE symsgid VALUE 'ZBRX',
         msgno TYPE symsgno VALUE '011',
@@ -28,6 +30,7 @@ CLASS zcx_brx_static_check DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF internal_error .
     CONSTANTS:
+      "! <p class="shorttext synchronized" lang="en">Internal error in method.</p>
       BEGIN OF internal_error_in_method,
         msgid TYPE symsgid VALUE 'ZBRX',
         msgno TYPE symsgno VALUE '012',
@@ -37,16 +40,16 @@ CLASS zcx_brx_static_check DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF internal_error_in_method .
 
-    DATA classname TYPE seoclsname .
-    DATA methodname TYPE seocpdname .
+    DATA classname TYPE string .
+    DATA methodname TYPE string.
 
     "! <p class="shorttext synchronized" lang="en">CONSTRUCTOR</p>
     METHODS constructor
       IMPORTING
         !textid     LIKE if_t100_message=>t100key OPTIONAL
         !previous   LIKE previous OPTIONAL
-        !classname  TYPE seoclsname OPTIONAL
-        !methodname TYPE seocpdname OPTIONAL.
+        !classname  TYPE clike OPTIONAL
+        !methodname TYPE clike OPTIONAL.
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.

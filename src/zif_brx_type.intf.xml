@@ -22,11 +22,6 @@
      <DESCRIPT>Type for the second count</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>TV_TIMESTAMP_FORMAT</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Type for timestamp format</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
      <CMPNAME>TV_TIMESTAMP_LONG</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Type for the long timestamp</DESCRIPT>
@@ -35,11 +30,6 @@
      <CMPNAME>TV_TIMESTAMP_SHORT</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Type for the short timestamp</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>TV_TIME_FORMAT</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Type for time format</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>TV_TIME_UNIT</CMPNAME>

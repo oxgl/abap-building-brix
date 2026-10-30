@@ -29,7 +29,7 @@ CLASS zcl_brx_interval DEFINITION
       IMPORTING
         io_moment          TYPE REF TO zif_brx_moment
         iv_unit            TYPE zif_brx_type=>tv_time_unit
-        iv_timezone        TYPE zif_brx_type=>tv_time_zone DEFAULT sy-zonlo
+        iv_timezone        TYPE zif_brx_type=>tv_time_zone OPTIONAL
       RETURNING
         VALUE(ro_interval) TYPE REF TO zif_brx_interval
       RAISING
@@ -103,7 +103,13 @@ CLASS zcl_brx_interval IMPLEMENTATION.
 
     DATA(lv_timestamp) = io_moment->as_timestampl( ).
 
-    CONVERT TIME STAMP lv_timestamp TIME ZONE iv_timezone
+    DATA(lv_timezone) = COND #(
+      WHEN iv_timezone IS NOT INITIAL
+      THEN iv_timezone
+      ELSE cl_abap_tstmp=>get_system_timezone( )
+    ).
+
+    CONVERT TIME STAMP lv_timestamp TIME ZONE lv_timezone
              INTO DATE DATA(lv_date) TIME DATA(lv_time).
 
     CASE iv_unit.

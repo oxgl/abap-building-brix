@@ -23,18 +23,10 @@ INTERFACE zif_brx_type
 
   TYPES:
     "! <p class="shorttext synchronized" lang="en">Type for date format</p>
-    tv_date_format TYPE c LENGTH 1 .
-
-  TYPES:
-    "! <p class="shorttext synchronized" lang="en">Type for time format</p>
-    tv_time_format TYPE c LENGTH 1 .
-
-  TYPES:
-    "! <p class="shorttext synchronized" lang="en">Type for timestamp format</p>
-    tv_timestamp_format TYPE c LENGTH 1 .
+    tv_date_format TYPE c LENGTH 3 .
 
   TYPES:
     "! <p class="shorttext synchronized" lang="en">Type for the second count</p>
-    tv_seconds type tzntstmpl.
+    tv_seconds TYPE tzntstmpl.
 
 ENDINTERFACE.

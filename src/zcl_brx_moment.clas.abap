@@ -20,7 +20,7 @@ CLASS zcl_brx_moment DEFINITION
         iv_timestamp     TYPE numeric OPTIONAL
         iv_date          TYPE d OPTIONAL
         iv_time          TYPE t OPTIONAL
-        iv_timezone      TYPE zif_brx_type=>tv_time_zone DEFAULT sy-zonlo
+        iv_timezone      TYPE zif_brx_type=>tv_time_zone OPTIONAL
           PREFERRED PARAMETER iv_timestamp
       RETURNING
         VALUE(ro_moment) TYPE REF TO zif_brx_moment
@@ -162,7 +162,7 @@ CLASS zcl_brx_moment DEFINITION
         !iv_timestamp       TYPE timestampl
         !iv_value           TYPE numeric
         !iv_unit            TYPE msehi OPTIONAL
-        !iv_timezone        TYPE zif_brx_type=>tv_time_zone DEFAULT sy-zonlo
+        !iv_timezone        TYPE zif_brx_type=>tv_time_zone OPTIONAL
       RETURNING
         VALUE(rv_timestamp) TYPE timestampl
       RAISING
@@ -182,7 +182,7 @@ CLASS zcl_brx_moment DEFINITION
         !iv_timestamp       TYPE timestampl
         !iv_value           TYPE numeric
         !iv_unit            TYPE msehi OPTIONAL
-        !iv_timezone        TYPE zif_brx_type=>tv_time_zone DEFAULT sy-zonlo
+        !iv_timezone        TYPE zif_brx_type=>tv_time_zone OPTIONAL
       RETURNING
         VALUE(rv_timestamp) TYPE timestampl
       RAISING
@@ -231,8 +231,14 @@ CLASS zcl_brx_moment IMPLEMENTATION.
     IF iv_timestamp IS NOT INITIAL.
       ro_moment = NEW zcl_brx_moment( iv_timestamp ).
     ELSEIF iv_date IS NOT INITIAL.
+      DATA(lv_timezone) = COND #(
+        WHEN iv_timezone IS NOT INITIAL
+        THEN iv_timezone
+        ELSE cl_abap_tstmp=>get_system_timezone( )
+      ).
+
       CONVERT DATE iv_date TIME iv_time
-         INTO TIME STAMP DATA(lv_timestamp) TIME ZONE iv_timezone.
+         INTO TIME STAMP DATA(lv_timestamp) TIME ZONE lv_timezone.
       ro_moment = NEW zcl_brx_moment( CONV #( lv_timestamp ) ).
     ELSE.
       " If no parameters are supplied, return the current moment
@@ -726,7 +732,7 @@ CLASS zcl_brx_moment IMPLEMENTATION.
 
   METHOD determine_timezone.
     IF iv_timezone IS INITIAL.
-      rv_timezone = sy-zonlo.
+      rv_timezone = cl_abap_tstmp=>get_system_timezone( ).
     ELSE.
       rv_timezone = iv_timezone.
     ENDIF.

@@ -39,7 +39,7 @@ CLASS zcx_brx_invalid_value DEFINITION
       BEGIN OF invalid_parameter_value,
         msgid TYPE symsgid VALUE 'ZBRX',
         msgno TYPE symsgno VALUE '023',
-        attr1 TYPE scx_attrname VALUE 'PARAMETER',
+        attr1 TYPE scx_attrname VALUE 'PARAMNAME',
         attr2 TYPE scx_attrname VALUE 'VALUE',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',

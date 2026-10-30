@@ -19,9 +19,29 @@
      <DESCRIPT>Creates a matcher object for the given pattern and text</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GC_DATE_MATCHER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Regular expressions for date matching</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GC_TIMESTAMP_MATCHER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Regular expressions for timestamp matching</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GC_TIME_MATCHER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Regular expressions for time matching</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>PARSE_DATE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Converts a date string to an internal date representation</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Converts a date/time string to internal date and time</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>PARSE_TIME</CMPNAME>
@@ -96,22 +116,58 @@
      <DESCRIPT>Raised when the conversion fails</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>PARSE_DATE</CMPNAME>
-     <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <SCONAME>EV_DATE</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Raised when the input date is invalid</DESCRIPT>
+     <DESCRIPT>The internal date representation after conversion</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <SCONAME>EV_FRACTION</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The fractional seconds part parsed from the time part</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <SCONAME>EV_OFFSET</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The offset in seconds from UTC parsed from the time part</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <SCONAME>EV_TIME</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The internal time representation after conversion</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <SCONAME>IV_INPUT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>The input date/time string to be converted</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <SCONAME>IV_PLAUSIBILITY_CHECK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Performs a plausibility check on the parsed date and time</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PARSE_DATE_TIME</CMPNAME>
+     <SCONAME>ZCX_BRX_CONVERSION_FAILED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Raised when the conversion fails</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIME</CMPNAME>
-     <SCONAME>EV_FORMAT</SCONAME>
+     <SCONAME>EV_FRACTION</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>The found format of the input time string</DESCRIPT>
+     <DESCRIPT>The fractional seconds part of the time</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIME</CMPNAME>
-     <SCONAME>IV_FORMAT</SCONAME>
+     <SCONAME>EV_OFFSET</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>The expected format of the input time string</DESCRIPT>
+     <DESCRIPT>The offset in seconds from UTC</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIME</CMPNAME>
@@ -138,22 +194,10 @@
      <DESCRIPT>Raised when the conversion fails</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
-     <CMPNAME>PARSE_TIME</CMPNAME>
-     <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Raised when the input date is invalid</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
      <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
-     <SCONAME>EV_FORMAT</SCONAME>
+     <SCONAME>IV_DATE_FORMAT</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>The found format of the input timestamp string</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
-     <SCONAME>IV_FORMAT</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>The expected format of the input timestamp string</DESCRIPT>
+     <DESCRIPT>The expected format of the input</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
@@ -165,7 +209,7 @@
      <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
      <SCONAME>IV_PLAUSIBILITY_CHECK</SCONAME>
      <LANGU>E</LANGU>
-     <DESCRIPT>Performs a plausibility check on the input timestamp string</DESCRIPT>
+     <DESCRIPT>Performs a plausibility check</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
@@ -178,12 +222,6 @@
      <SCONAME>ZCX_BRX_CONVERSION_FAILED</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Raised when the conversion fails</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>PARSE_TIMESTAMP</CMPNAME>
-     <SCONAME>ZCX_BRX_INVALID_VALUE</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Raised when the input date is invalid</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

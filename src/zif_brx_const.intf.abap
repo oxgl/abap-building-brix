@@ -30,35 +30,11 @@ INTERFACE zif_brx_const
   CONSTANTS:
     "! <p class="shorttext synchronized" lang="en">Date format</p>
     BEGIN OF gc_date_format,
-      auto     TYPE zif_brx_type=>tv_date_format VALUE ' ',
-      eur      TYPE zif_brx_type=>tv_date_format VALUE 'E',
-      internal TYPE zif_brx_type=>tv_date_format VALUE 'D',
-      iso      TYPE zif_brx_type=>tv_date_format VALUE 'I',
-      unknown  TYPE zif_brx_type=>tv_date_format VALUE ' ',
-      usa      TYPE zif_brx_type=>tv_date_format VALUE 'U',
+      auto TYPE zif_brx_type=>tv_date_format VALUE '   ',
+      ymd  TYPE zif_brx_type=>tv_date_format VALUE 'YMD',
+      dmy  TYPE zif_brx_type=>tv_date_format VALUE 'DMY',
+      mdy  TYPE zif_brx_type=>tv_date_format VALUE 'MDY',
     END OF gc_date_format .
-
-  CONSTANTS:
-    "! <p class="shorttext synchronized" lang="en">Time format</p>
-    BEGIN OF gc_time_format,
-      auto     TYPE zif_brx_type=>tv_time_format VALUE ' ',
-      eur      TYPE zif_brx_type=>tv_time_format VALUE 'E',
-      internal TYPE zif_brx_type=>tv_time_format VALUE 'T',
-      iso      TYPE zif_brx_type=>tv_time_format VALUE 'I',
-      unknown  TYPE zif_brx_type=>tv_time_format VALUE ' ',
-    END OF gc_time_format .
-
-  CONSTANTS:
-    "! <p class="shorttext synchronized" lang="en">Timestamp format</p>
-    BEGIN OF gc_timestamp_format,
-      auto       TYPE zif_brx_type=>tv_timestamp_format VALUE ' ',
-      iso_local  TYPE zif_brx_type=>tv_timestamp_format VALUE 'L',
-      iso_offset TYPE zif_brx_type=>tv_timestamp_format VALUE 'O',
-      iso_utc    TYPE zif_brx_type=>tv_timestamp_format VALUE 'Z',
-      raw        TYPE zif_brx_type=>tv_timestamp_format VALUE 'R',
-      text       TYPE zif_brx_type=>tv_timestamp_format VALUE 'T',
-      unknown    TYPE zif_brx_type=>tv_timestamp_format VALUE ' ',
-    END OF gc_timestamp_format .
 
   CONSTANTS:
     "! <p class="shorttext synchronized" lang="en">Timestamp constants</p>
